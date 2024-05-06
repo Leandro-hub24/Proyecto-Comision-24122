@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador</title>
+
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+        <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="" />
+</head>
+<body>
+    
+    <%- include('partials/header.ejs'); -%> 
+    
+
+    <main class="main">
+
+        <section class="buscadorAdmin">
+            <h3>Administrador de Productos y Pedidos</h3>
+            <div class="contenedorBoton">
+                <button onclick="agregarProducto()">Agregar Producto</button>
+            </div>
+            
+            <div class="contenedor">
+
+                <aside class="buscador">
+                
+                    <div class="resultadosBusqueda">
+                        <div class="resultados">
+                            <h4 class=" f-hsb c-texto">Productos</h4>
+
+                            <div class="itemsMascotas">
+                                <p onclick="actualizarCards()">Todos (<span id="todos"><%= productos.length %></span>)</p>
+                                <p onclick="filtrarStock(1)">Con stock (<span id="cStock"><%= stock %></span>)</p>
+                                <p onclick="filtrarStock(0)">Sin stock (<span id="sStock"><%= sinStock %></span>)</p>
+                            </div>
+                        </div>
+                        <div class="resultados">
+                            <h4 class=" f-hsb c-texto">Pedidos</h4>
+
+                            <div class="itemsAlojamientos">
+                                <p class="f-bl c-texto-gris">En proceso (<span id="proceso"></span>)</p>
+                                <p class="f-bl c-texto-gris">Entregados (<span id="entregados"></span>)</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </aside>
+
+                <div class="cards" id="cards">
+
+                        <% productos.map( (producto) => { %>
+                        <div class="card">
+                            <div class="img">
+                                <img src="<%= producto.img_url %>" alt="Img">
+                            </div>
+                            
+                            <h4><%= producto.nombre %></h4>
+                            <p><%= producto.descripcion %></p>
+                            <p>$<span><%= producto.precio %></span></p>
+                            <p>Stock: <span><%= producto.stock %></span></p>
+                            <div class="acciones">
+                                <span class="material-symbols-outlined" onclick="editarProducto(<%= producto.producto_id %>)" >
+                                    edit
+                                </span>
+                                <span class="material-symbols-outlined" onclick="eliminarProducto(<%= producto.producto_id %>)">
+                                    delete
+                                </span>
+                            </div>
+                        </div>
+                        <% }) %>
+
+                </div>
+                
+
+            </div>
+            
+            
+            
+
+            <div class="paginas">
+                <div class="cargarMas">
+                    <button id="cargarMas" class="">Cargar más...</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+            <div class="fondoModal" id="fondoModal" style="display: none;">
+                <div class="modal" id="modal">
+                    <form action="" class="formModal" id="formModal">
+                        
+                        <div class="formulario">
+                            <div class="imageContenedor">
+                                <label for="image" id="imagePrevia">
+                                    Buscar una imagen      
+                                </label>
+                            </div>
+                            <input type="file" accept="image/*" name="image" id="image" style="display: none;">
+
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" name="nombre" id="nombre">
+
+                            <label for="descripcion">Descripcion:</label>
+                            <input type="text" name="descripcion" id="descripcion">
+
+                            <label for="precio">Precio:</label>
+                            <input type="number" name="precio" id="precio">
+
+                            <label for="stock">Stock:</label>
+                            <input type="number" name="stock" id="stock">
+
+                            <input type="number" style="display: none;" name="producto_id" id="producto_id">
+                        </div>
+
+                        <div class="botonesForm">
+                            <button class="btt" onclick="cancelarForm()" id="cancelar">Cancelar</button>
+                            <button class="btt" onclick="editarForm()" id="editar" style="display: none;">Confirmar</button>
+                            <button class="btt" onclick="guardarForm()" id="guardar" style="display: none;">Guardar</button>
+                        </div>
+       
+                    </form>
+
+                </div>
+            </div>
+    <%- include('partials/footer.ejs'); -%> 
+    <script src="js/admin.js"></script>
+        
+</body>
+</html>
