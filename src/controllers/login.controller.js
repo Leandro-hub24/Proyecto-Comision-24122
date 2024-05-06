@@ -26,7 +26,6 @@ export const getLogin = async (req, res) => {
 
 export const postLogin = async (req, res) => {
     const {email, pass} = req.body
-    /* let passwordHaash = await bcryptjs.hash(pass, 8) */
     const client = await db.connect()
 
     try {
