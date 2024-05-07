@@ -1,0 +1,84 @@
+.main {
+    margin: 0 24px;
+    
+}
+
+.contenedorPerfil {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+    align-items: center;
+}
+
+.contenedorPerfil button {
+    margin-top: 24px;
+}
+
+.contenedorPerfil h4 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 24px 0;
+}
+
+.misDatos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.misDatos .img {
+    width: 160px;
+    height: 160px;
+}
+
+.img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.misDatos p {
+    font-weight: 700;
+}
+
+.misDatos p span {
+    font-weight: 500;
+}
+
+
+.contenedorPedidos {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+    align-items: center;
+}
+
+.contenedorPedidos h4 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 24px 0;
+}
+
+.contenedorPedidos details summary{
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 8px;
+    min-width: 500px;
+    background-color: antiquewhite;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.contenedorPedidos details .info {
+    border-radius: 8px;
+    background-color: antiquewhite;
+    padding: 8px;
+    min-width: 500px;
+    margin: 8px 0;
+}
+

@@ -62,6 +62,10 @@ function postFetch() {
     })
 }
 
+function registro(){
+    window.location = '/register'
+}
+
 document.getElementById('submit').addEventListener('click', () => {
     postFetch()
 })

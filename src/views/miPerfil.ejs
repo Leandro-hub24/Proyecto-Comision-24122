@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main</title>
+    <title>Mi perfil</title>
 
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/general.css">
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/header.css">
-    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="css/miPerfil.css">
+
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet"
@@ -25,10 +24,33 @@
 <body>
 
     <%- include('partials/header.ejs'); -%> 
+
     <main class="main">
-       Pagina en proceso 
+
+        <div class="contenedorPerfil">
+            <h4>Mis datos:</h4>
+            <div class="misDatos">
+                <div class="img">
+                    <img src="https://i.imgur.com/lHZzKdP.png" alt="">
+                </div>
+                <p>Nombre: <span>Momoka</span></p>
+                <p>Apellido: <span>Kawaragi</span></p>
+                <p>Email: <span>momoka@example.com</span></p>              
+            </div>
+            <button class="btt" onclick="editarPerfil()">Editar</button>
+            
+        </div>
+
+        <div class="contenedorPedidos">
+            <h4>Mis compras:</h4>
+            <details>
+                <summary class="pedido">Compra 120321</summary>
+                <div class="info">Facturas, precio $6000 </div>
+            </details>
+
+        </div>
+
     </main>
-    
 
     <%- include('partials/footer.ejs'); -%>
     
