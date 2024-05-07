@@ -34,11 +34,10 @@ app.use(cookieParser(CLAVE))
 app.set('view engine', 'ejs')
 app.set('views', join(__dirname, 'views'))
 
-app.use(indexRoutes)
-app.use(adminRoutes) 
 app.use(loginRoutes)
 app.use(registerRoutes)
-
+app.use(adminRoutes) 
+app.use(indexRoutes)
 
 app.get('/logout', (req, res) => {
 
@@ -47,6 +46,7 @@ app.get('/logout', (req, res) => {
     res.clearCookie("nombre");
     res.clearCookie("apellido");
     res.clearCookie("img_url");
+    res.clearCookie("rol");
     res.redirect('/')
 })
 

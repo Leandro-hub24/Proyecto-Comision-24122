@@ -10,21 +10,14 @@ export const getLogin = async (req, res) => {
             apellidos: req.signedCookies['apellidos'],
         }
 
-        res.render('index', {
-         login: true,
-         id: req.signedCookies['idUser'],
-         usuarioSesion,
-         index: true
-        })
+        res.redirect('/')
 
     } else {
         
-        console.log('algo')
         res.render('login', {
             login: false
         })
     } 
-
     
 
 }
@@ -42,7 +35,7 @@ export const postLogin = async (req, res) => {
 
         }else{
 
-            console.log(rows[0])
+            /* console.log(rows[0]) */
 
             if(typeof rows[0] ==='undefined' || !(await bcryptjs.compare(pass, rows[0].pass))){
                 res.status(200).json({msg: 'Contraseña incorrecta', login: false})       
