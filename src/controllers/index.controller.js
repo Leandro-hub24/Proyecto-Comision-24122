@@ -6,13 +6,14 @@ export const getIndex = async (req, res) => {
         const usuarioSesion = {
             nombres: req.signedCookies['nombres'],
             apellidos: req.signedCookies['apellidos'],
+            img_url: req.signedCookies['img_url'],
+            rol: req.signedCookies['rol']
         }
 
         res.render('index', {
          login: true,
          id: req.signedCookies['idUser'],
-         usuarioSesion,
-         index: true
+         usuarioSesion
         })
     } else {
 

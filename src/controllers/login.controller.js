@@ -5,11 +5,6 @@ export const getLogin = async (req, res) => {
     
     if(req.signedCookies['loggedin']){
 
-        const usuarioSesion = {
-            nombres: req.signedCookies['nombres'],
-            apellidos: req.signedCookies['apellidos'],
-        }
-
         res.redirect('/')
 
     } else {

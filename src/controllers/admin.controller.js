@@ -24,7 +24,23 @@ export const getAdmin = async (req, res) => {
         console.log('Productos sin stock:', resultado2.rows)
 
         productos = resultado.rows
-        res.render('admin', {productos, stock: resultado1.rows[0].count, sinStock: resultado2.rows[0].count})
+
+        
+          const usuarioSesion = {
+            nombres: req.signedCookies['nombres'],
+            apellidos: req.signedCookies['apellidos'],
+            img_url: req.signedCookies['img_url'],
+            rol: req.signedCookies['rol']
+          }
+  
+          res.render('admin', {
+           login: true,
+           id: req.signedCookies['idUser'],
+           usuarioSesion,
+           productos,
+           stock: resultado1.rows[0].count,
+           sinStock: resultado2.rows[0].count
+          })
 
       } catch (error) {
         console.error('Error al consultar productos:', error);
@@ -72,7 +88,7 @@ export const postAdmin = async (req, res) => {
     
         console.log('Productos:', resultado.rows); // Imprimir los resultados
         productos = resultado.rows
-        res.send(productos)
+        res.status(200).json(productos)
 
       } catch (error) {
         console.error('Error al consultar productos:', error);
@@ -232,12 +248,13 @@ export const getProductoId = async (req, res) => {
     
         console.log('Producto:', resultado.rows); // Imprimir los resultados
         producto = resultado.rows
+        res.status(200).json(producto)
       } catch (error) {
         console.error('Error al buscar producto:', error);
         res.status(500).json({ error: 'Error al buscar producto' });
       }
 
-      res.send(producto)
+      
 }
 
 export const putProducto = async (req, res) => {

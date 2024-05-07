@@ -9,10 +9,33 @@
             <a class="linkNav" href="#">Contacto</a>
         </div>
 
-        <div class="session">
-            <a href="/login"><button class="buttonNav">Iniciar sesión</button></a>
-            <a href="/register"><button class="buttonNav">Registrate</button></a>
-        </div>
+        <% if(login){%>
+
+            <div class="sesionIniciada">
+
+                <img src="<%= usuarioSesion.img_url %>" alt="" id="imageUser">
+                <div class="drop-down" id="drop-down" >
+                    <a href="#">Mi perfil</a>
+                    <% if(usuarioSesion.rol === 'admin') {%>
+                    <a href="/admin">Administración</a>
+                    <% } %>
+                    <a href="/logout">Cerrar sesión</a>
+                </div>
+
+            </div>
+
+        <% } else { %>
+
+            <div class="session">
+                <a href="/login"><button class="buttonNav">Iniciar sesión</button></a>
+                <a href="/register"><button class="buttonNav">Registrate</button></a>
+            </div>
+
+        <% } %>
+        
+        
+
+        
 
     </nav>
     
