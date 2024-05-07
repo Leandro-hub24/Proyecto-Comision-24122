@@ -1,4 +1,6 @@
 import { db } from '@vercel/postgres'
+import bcryptjs from 'bcryptjs'
+import axios from 'axios'
 
 export const getRegister = async (req, res) => {
 
@@ -44,14 +46,15 @@ export const postRegister = async (req, res) => {
 
         try {
           const query1 = {
-            text: `INSERT INTO productos (nombre, apellido, email, pass, img_url) 
-                  VALUES ($1, $2, $3, $4, $5)`,
+            text: `INSERT INTO usuarios_1 (nombre, apellido, email, pass, img_url, rol) 
+                  VALUES ($1, $2, $3, $4, $5, $6)`,
             values: [
               user.nombre,
               user.apellido,
               user.email,
               passwordHaash,
-              img_url
+              img_url,
+              'user'
             ],
           };
           

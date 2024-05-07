@@ -1,4 +1,5 @@
 import { db } from '@vercel/postgres'
+import bcryptjs from 'bcryptjs'
 
 export const getLogin = async (req, res) => {
 
@@ -30,7 +31,7 @@ export const postLogin = async (req, res) => {
 
     try {
 
-        const {rows} = await client.sql`SELECT * FROM usuarios WHERE correo_electronico = ${email};`;
+        const {rows} = await client.sql`SELECT * FROM usuarios_1 WHERE email = ${email};`;
         if(rows.length === 0){
 
             res.status(200).json({msg: 'Email no registrado', login: false})

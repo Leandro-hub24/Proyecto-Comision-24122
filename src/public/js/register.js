@@ -69,23 +69,23 @@ function postFetch(nombre, apellido, email, pass, image64) {
     .then(res => res.json())
     .then (data => {
 
-        if(data.login){
+        if(data === 1){
 
             Swal.fire({
             icon: "success", 
-            title: data.msg,
+            title: 'Se ha registrado correctamente',
             footer: '<button class="btt" ><a href="/" >Home</a></button>',
             showConfirmButton: false    
             })
           setTimeout(function () {
-            window.location = data.ruta
+            window.location = '/login'
           }, 3000)
 
         }else{
 
             Swal.fire({
                 icon: "error", 
-                title: data.msg,
+                title: data.error,
             })
 
         }
