@@ -74,7 +74,7 @@ function postFetch(nombre, apellido, email, pass, image64) {
             Swal.fire({
             icon: "success", 
             title: 'Se ha registrado correctamente',
-            footer: '<button class="btt" ><a href="/" >Home</a></button>',
+            footer: '<button class="btt" ><a href="/login" >Iniciar sesión</a></button>',
             showConfirmButton: false    
             })
           setTimeout(function () {

@@ -47,7 +47,7 @@ function postFetch() {
             showConfirmButton: false    
             })
           setTimeout(function () {
-            window.location = data.ruta
+            window.location = '/'
           }, 3000)
 
         }else{

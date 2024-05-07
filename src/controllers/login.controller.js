@@ -2,8 +2,9 @@ import { db } from '@vercel/postgres'
 import bcryptjs from 'bcryptjs'
 
 export const getLogin = async (req, res) => {
-
+    
     if(req.signedCookies['loggedin']){
+
         const usuarioSesion = {
             nombres: req.signedCookies['nombres'],
             apellidos: req.signedCookies['apellidos'],
@@ -15,7 +16,10 @@ export const getLogin = async (req, res) => {
          usuarioSesion,
          index: true
         })
+
     } else {
+        
+        console.log('algo')
         res.render('login', {
             login: false
         })
@@ -52,7 +56,6 @@ export const postLogin = async (req, res) => {
                 res.cookie('rol', rows[0].rol, { maxAge: 900000, httpOnly: true, secure: true, signed: true})
 
                 res.status(200).json({
-                    ruta: '/',
                     msg: 'Ha iniciado sesión correctamente',
                     login: true
                 })

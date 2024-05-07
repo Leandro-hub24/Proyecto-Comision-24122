@@ -15,8 +15,10 @@ export const getIndex = async (req, res) => {
          index: true
         })
     } else {
+
         res.render('index', {
             login: false
+            
         })
     } 
 
