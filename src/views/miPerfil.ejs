@@ -31,11 +31,11 @@
             <h4>Mis datos:</h4>
             <div class="misDatos">
                 <div class="img">
-                    <img src="https://i.imgur.com/lHZzKdP.png" alt="">
+                    <img src="<%= usuarioSesion.img_url %>" alt="" id="img_url">
                 </div>
-                <p>Nombre: <span>Momoka</span></p>
-                <p>Apellido: <span>Kawaragi</span></p>
-                <p>Email: <span>momoka@example.com</span></p>              
+                <p>Nombre: <span id="nombreUser"><%= usuarioSesion.nombres %></span></p>
+                <p>Apellido: <span id="apellidoUser"><%= usuarioSesion.apellidos %></span></p>
+                <p>Email: <span id="emailUser"><%= email %></span></p>              
             </div>
             <button class="btt" onclick="editarPerfil()">Editar</button>
             
@@ -52,7 +52,41 @@
 
     </main>
 
+    <div class="fondoModal" id="fondoModal" style="display: none;">
+        <div class="modal" id="modal">
+            <form action="" class="formModal" id="formModal">
+                
+                <div class="formulario">
+                    <div class="imageContenedor">
+                        <label for="image" id="imagePrevia">
+                            Buscar una imagen      
+                        </label>
+                    </div>
+                    <input type="file" accept="image/*" name="image" id="image" style="display: none;">
+
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre">
+
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" name="apellido" id="apellido">
+
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" id="email">
+
+                </div>
+
+                <div class="botonesForm">
+                    <button class="btt" onclick="cancelarForm()" id="cancelar">Cancelar</button>
+                    <button class="btt" onclick="guardarForm()" id="guardar">Guardar</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
     <%- include('partials/footer.ejs'); -%>
+    <script src="js/miPerfil.js"></script>
     
 </body>
 </html>
