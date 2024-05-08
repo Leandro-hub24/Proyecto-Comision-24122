@@ -86,15 +86,13 @@ function guardarForm(){
     }
 }
 
-function putForm(user){
-    let url = '/admin/productos'
+/* function putForm(user){
+    let url = '/mi-perfil'
     let request = new Request(url, {
         method: 'PUT',
         body: JSON.stringify(producto),
         headers: {
-            /* "Content-Type": "multipart/form-data", */
             "Content-Type": "application/json",            
-            /* "Content-Type": "application/x-www-form-urlencoded", */
         }, 
     });
     fetch(request)
@@ -107,4 +105,4 @@ function putForm(user){
             console.log('No se ha editado el producto')
         }
     })
-}
+} */
