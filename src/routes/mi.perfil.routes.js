@@ -1,10 +1,11 @@
 import {Router} from 'express'
-import {getMiPerfil} from '../controllers/mi.perfil.controller.js'
+import {getMiPerfil, putMiPerfil} from '../controllers/mi.perfil.controller.js'
+import { authSession } from '../middleware/authSesion.js'
 
 const router = Router()
 
-router.get('/mi-perfil', getMiPerfil)
+router.get('/mi-perfil', authSession, getMiPerfil)
 
-router.post('/mi-perfil',)
+router.put('/mi-perfil',authSession, putMiPerfil)
 
 export default router

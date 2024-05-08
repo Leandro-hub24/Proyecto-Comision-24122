@@ -86,11 +86,11 @@ function guardarForm(){
     }
 }
 
-/* function putForm(user){
+function putForm(user){
     let url = '/mi-perfil'
     let request = new Request(url, {
         method: 'PUT',
-        body: JSON.stringify(producto),
+        body: JSON.stringify(user),
         headers: {
             "Content-Type": "application/json",            
         }, 
@@ -100,9 +100,20 @@ function guardarForm(){
     .then( (data) => {
         if(data === 1){
             console.log('Se ha editado correctamente')
-            actualizarCards()
+            Swal.fire({
+                icon: "success", 
+                title: 'Se ha actualizado correctamente',
+                showConfirmButton: false    
+                })
+              setTimeout(function () {
+                window.location = '/mi-perfil'
+              }, 1500)
         }else if(data.error){
             console.log('No se ha editado el producto')
+            Swal.fire({
+                icon: "error", 
+                title: data.msg,  
+                })
         }
     })
-} */
+}

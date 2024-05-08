@@ -82,13 +82,24 @@ export const postAdmin = async (req, res) => {
     
         // Consulta SQL
         const consulta = `SELECT * FROM productos ORDER BY nombre LIMIT 8 OFFSET ${i}`;
+        const consultaStock = 'SELECT COUNT(producto_id) FROM productos WHERE stock > 0'
+        const consultaSinStock = 'SELECT COUNT(producto_id) FROM productos WHERE stock = 0'
     
         // Ejecutar la consulta
         const resultado = await client.query(consulta);
+        const resultado1 = await client.query(consultaStock);
+        const resultado2 = await client.query(consultaSinStock);
     
         console.log('Productos:', resultado.rows); // Imprimir los resultados
+        console.log('Productos con stock:', resultado1.rows)
+        console.log('Productos sin stock:', resultado2.rows)
+
         productos = resultado.rows
-        res.status(200).json(productos)
+        res.status(200).json({
+          productos, 
+          stock: resultado1.rows[0].count,
+          sinStock: resultado2.rows[0].count
+        })
 
       } catch (error) {
         console.error('Error al consultar productos:', error);
