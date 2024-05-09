@@ -11,6 +11,8 @@ import adminRoutes from './routes/admin.routes.js'
 import loginRoutes from './routes/login.routes.js'
 import registerRoutes from './routes/register.routes.js'
 import miPerfilRoutes from './routes/mi.perfil.routes.js'
+import quienesSomosRoutes from './routes/quienes.somos.routes.js'
+import contactoRoutes from './routes/contacto.routes.js'
 
 
 const app = express()
@@ -40,6 +42,8 @@ app.use(registerRoutes)
 app.use(adminRoutes) 
 app.use(indexRoutes)
 app.use(miPerfilRoutes)
+app.use(quienesSomosRoutes)
+app.use(contactoRoutes)
 
 app.get('/logout', (req, res) => {
 
