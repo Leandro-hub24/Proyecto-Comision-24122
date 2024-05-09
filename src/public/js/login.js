@@ -67,5 +67,21 @@ function registro(){
 }
 
 document.getElementById('submit').addEventListener('click', () => {
-    postFetch()
+    if(document.getElementById('email').value !== ''){
+        if(document.getElementById('pass').value !== ''){
+            document.getElementById('submit').disabled = 'true'
+            postFetch()
+        }else{
+            Swal.fire({
+                icon: "error", 
+                title: 'Inserte una contraseña valida',
+            })
+        }
+    }else{
+        Swal.fire({
+            icon: "error", 
+            title: 'Inserte un email valido',
+        })
+    }
+    
 })
