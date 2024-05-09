@@ -11,6 +11,11 @@
     gap: 32px;
 }
 
+/* .contenedor1 h2 {
+    font-size: 24px;
+    text-align: center;
+} */
+
 .quienesSomos {
     display: flex;
     flex-direction: column;

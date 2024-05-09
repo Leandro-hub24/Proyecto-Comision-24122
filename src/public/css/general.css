@@ -38,6 +38,18 @@ input {
     outline: 0;
 }
 
+textarea {
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    outline: 0;
+}
+
+label {
+    font-weight: 700;
+}
+
 a {
     text-decoration: none;
     color: black;
