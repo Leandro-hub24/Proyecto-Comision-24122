@@ -101,7 +101,7 @@ document.getElementById('submit').addEventListener('click', () => {
     let pass = document.getElementById('pass').value
     let pass1 = document.getElementById('pass1').value
 
-    if( nombre !== '' && apellido !== '' && email !== '' && pass !== '' && pass1 !== '' && image64 !== '') {
+    if( nombre !== '' && apellido !== '' && validarEmail(email) && pass !== '' && pass1 !== '' && image64 !== '') {
 
         if(pass === pass1){
             postFetch(nombre, apellido, email, pass, image64)
@@ -122,3 +122,9 @@ document.getElementById('submit').addEventListener('click', () => {
 
 })
 
+function validarEmail(email) {
+    // Expresión regular para verificar el formato del email
+    var patron = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    // Verificar si el email coincide con el patrón
+    return patron.test(email);
+}

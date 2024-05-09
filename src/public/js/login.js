@@ -17,6 +17,13 @@ document.getElementById('show').addEventListener('click', () => {
     }
 })
 
+function validarEmail(email) {
+    // Expresión regular para verificar el formato del email
+    var patron = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    // Verificar si el email coincide con el patrón
+    return patron.test(email);
+}
+
 function postFetch() {
 
     //agregar funcion para ver si los input estan vacios
@@ -67,7 +74,7 @@ function registro(){
 }
 
 document.getElementById('submit').addEventListener('click', () => {
-    if(document.getElementById('email').value !== ''){
+    if(validarEmail(document.getElementById('email').value)){
         if(document.getElementById('pass').value !== ''){
             document.getElementById('submit').disabled = 'true'
             postFetch()
