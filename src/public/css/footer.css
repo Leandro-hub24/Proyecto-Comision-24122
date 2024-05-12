@@ -3,8 +3,8 @@
 footer{
     background-color: #009D91;
     padding-bottom: 0.1px;
-    width: 100%;
     min-height: 250px;
+    margin-top: auto;
 }
 
 .footer-content{

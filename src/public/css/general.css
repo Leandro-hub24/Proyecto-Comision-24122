@@ -12,8 +12,8 @@ body {
     background-color: #F6F4ED;
     /* display: flex;
     flex-direction: column; */
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+    /* display: grid;
+    grid-template-rows: auto 1fr auto; */
 }
 
 main {

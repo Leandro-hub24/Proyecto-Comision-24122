@@ -9,17 +9,28 @@
             <a class="linkNav" href="/contacto">Contacto</a>
         </div>
 
+        <div class="pagesCel">
+            <a href="/"><img src="" alt="Logo" id="logo"></a>
+            <i class='bx bx-menu bx-flip-horizontal' id="hamburger"></i>
+            <div class="drop-down1" id="drop-down1">
+                <a class="linkNav" href="#">Productos</a>
+                <a class="linkNav" href="/quienes-somos">Quiénes somos</a>
+                <a class="linkNav" href="/contacto">Contacto</a>
+            </div>
+            
+        </div>
+
         <% if(login){%>
 
             <div class="sesionIniciada">
 
                 <img src="<%= usuarioSesion.img_url %>" alt="" id="imageUser">
                 <div class="drop-down" id="drop-down" >
-                    <a href="/mi-perfil">Mi perfil</a>
+                    <a href="/mi-perfil" class="linkNav">Mi perfil</a>
                     <% if(usuarioSesion.rol === 'admin') {%>
-                    <a href="/admin">Administración</a>
+                    <a href="/admin" class="linkNav">Administración</a>
                     <% } %>
-                    <a href="/logout">Cerrar sesión</a>
+                    <a href="/logout" class="linkNav">Cerrar sesión</a>
                 </div>
 
             </div>
@@ -29,6 +40,14 @@
             <div class="session">
                 <a href="/login"><button class="buttonNav">Iniciar sesión</button></a>
                 <a href="/register"><button class="buttonNav">Registrate</button></a>
+            </div>
+
+            <div class="sessionCel">
+                <img src="images/user.png" alt="" id="imageUser">
+                <div class="drop-down" id="drop-down" >
+                    <a href="/login" class="linkNav">Iniciar sesión</a>
+                    <a href="/register" class="linkNav">Registrate</a>
+                </div>
             </div>
 
         <% } %>
