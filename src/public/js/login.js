@@ -80,7 +80,7 @@ document.getElementById('submit').addEventListener('click', () => {
         document.getElementById('email').style.borderColor = 'black'
         if(document.getElementById('pass').value !== ''){
             document.getElementById('password').style.borderColor = 'black'
-            document.getElementById('submit').disabled = 'true'
+            document.getElementById('submit').disabled = true
             postFetch()
         }else{
             /* Swal.fire({

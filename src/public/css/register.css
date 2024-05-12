@@ -36,6 +36,7 @@ main {
     height: 160px;
     background-color: white;
     border-radius: 100%;
+    position: relative;
 }
 
 .imageContenedor label{
@@ -68,12 +69,45 @@ main {
     justify-content: left;
     gap: 10px;
     font-size: 14px;
+    position: relative;
 }
 
 .input input {
     padding: 16px;
     border-radius: 8px;
     width: 260px;
+    border: 1px solid white;
+}
+
+.imageContenedor .error {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 50% 100%, 50% 75%, 0% 75%);
+    height: 50px;
+    width: 200px;
+    position: absolute;
+    background-color: #DF6D6A;
+    left: 70px;
+    top: -25px;
+    display: flex;
+    padding: 12px;
+    border-radius: 8px;
+    justify-content: center;
+}
+
+.input .error {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 50% 100%, 50% 75%, 0% 75%);
+    height: 50px;
+    position: absolute;
+    background-color: #DF6D6A;
+    left: 70px;
+    top: -25px;
+    display: flex;
+    padding: 12px;
+    border-radius: 8px;
+    justify-content: center;
+}
+
+.error p {
+    color: white;
 }
 
 .botones {
@@ -91,10 +125,11 @@ main {
     align-items: center;
     background-color: white;
     border-radius: 8px;
+    border: 1px solid white;
 }
 
 .password input {
-    border: 0;
+    border: 1px solid white;
     width: 226px;
 }
 

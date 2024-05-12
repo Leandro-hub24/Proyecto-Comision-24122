@@ -101,30 +101,107 @@ document.getElementById('submit').addEventListener('click', () => {
     let pass = document.getElementById('pass').value
     let pass1 = document.getElementById('pass1').value
 
-    if( nombre !== '' && apellido !== '' && validarEmail(email) && pass !== '' && pass1 !== '' && image64 !== '') {
-
-        if(pass === pass1){
-            postFetch(nombre, apellido, email, pass, image64)
-        }else{
-            Swal.fire({
-                icon: "error", 
-                title: 'Las contraseñas no coinciden',
-            })
-        }
-        
-
-    }else{
-        Swal.fire({
-            icon: "error", 
-            title: 'Complete todo el formulario antes de enviar',
-        })
+    if(verificarInput()) {
+        document.getElementById('submit').disabled = true
+        postFetch(nombre, apellido, email, pass, image64)
     }
+        
 
 })
 
 function validarEmail(email) {
     // Expresión regular para verificar el formato del email
-    var patron = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    let patron = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     // Verificar si el email coincide con el patrón
     return patron.test(email);
+}
+
+function validarPass(pass) {
+
+    let patron = /^[a-zA-Z0-9._%$&+-]{8,}$/;
+
+    return patron.test(pass);
+}
+
+document.getElementById('cancelar').addEventListener('click', () => {
+
+    document.getElementById('nombre').value = ''
+    document.getElementById('apellido').value = ''
+    document.getElementById('email').value = ''
+    document.getElementById('pass').value = ''
+    document.getElementById('pass1').value = ''
+    document.getElementById('image').value = ''
+    document.getElementById('imagePre').src = 'images/user.png'
+    image64 = ''
+
+})
+
+function verificarInput() {
+    if(document.getElementById('nombre').value !== ''){
+        document.getElementById('nombre').style.borderColor = 'white'
+
+        if(document.getElementById('apellido').value !== ''){
+            document.getElementById('apellido').style.borderColor = 'white'
+
+            if(validarEmail(document.getElementById('email').value)){
+                document.getElementById('email').style.borderColor = 'white'
+
+                if(validarPass(document.getElementById('pass').value)){
+                    document.getElementById('password').style.borderColor = 'white'
+
+                    if(document.getElementById('pass1').value !== '' && document.getElementById('pass1').value === document.getElementById('pass').value){
+                        document.getElementById('password1').style.borderColor = 'white'
+
+                        if(image64 !== ''){
+                            return true
+
+                        }else{
+                            const posicionY = document.getElementById("image").getBoundingClientRect().top;
+                            window.scroll(0, posicionY);
+                            document.getElementById('errorImage').removeAttribute('style')
+                            setTimeout(function () {
+                            document.getElementById('errorImage').style.display = 'none'
+                            }, 3000)
+                            return false
+                        }
+                    }else{
+                        document.getElementById('errorPass1').removeAttribute('style')
+                        document.getElementById('password1').style.borderColor = 'red'
+                        setTimeout(function () {
+                        document.getElementById('errorPass1').style.display = 'none'
+                        }, 3000)
+                        return false
+                    }
+                }else{
+                    document.getElementById('errorPass').removeAttribute('style')
+                    document.getElementById('password').style.borderColor = 'red'
+                    setTimeout(function () {
+                    document.getElementById('errorPass').style.display = 'none'
+                    }, 3000)
+                    return false
+                }
+            }else{
+                document.getElementById('errorEmail').removeAttribute('style')
+                document.getElementById('email').style.borderColor = 'red'
+                setTimeout(function () {
+                    document.getElementById('errorEmail').style.display = 'none'
+                }, 3000)
+                return false
+            }
+        }else{
+            document.getElementById('errorApellido').removeAttribute('style')
+            document.getElementById('apellido').style.borderColor = 'red'
+            setTimeout(function () {
+                document.getElementById('errorApellido').style.display = 'none'
+            }, 3000)
+            return false
+        }
+    }else{
+        document.getElementById('errorNombre').removeAttribute('style')
+        document.getElementById('nombre').style.borderColor = 'red'
+        setTimeout(function () {
+            document.getElementById('errorNombre').style.display = 'none'
+        }, 3000)
+        return false
+    }
 }
