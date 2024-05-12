@@ -70,7 +70,8 @@ main {
     align-items: center;
     border-radius: 8px;
     margin-bottom: 24px;
-    padding-bottom: 72px;
+    padding-bottom: 60px;
+    gap: 8px;
 }
 
 .contenedorPedidos h4 {
@@ -87,18 +88,17 @@ main {
 .contenedorPedidos details summary{
     border-radius: 8px;
     padding: 8px;
-    background-color: antiquewhite;
+    background-color: white;
     font-size: 16px;
     font-weight: 700;
 }
 
 .contenedorPedidos details .info {
     border-radius: 8px;
-    background-color: antiquewhite;
+    background-color: white;
     padding: 8px;
     width: 100%;
     margin: 8px 0;
-    position: absolute;
 }
 
 /* Modal */
@@ -121,7 +121,7 @@ main {
     max-height: 700px;
     padding: 24px;
     border-radius: 8px;
-    background-color: #5dcec6;
+    background-color: #BCE6DF;
 }
 
 .modal span {
@@ -144,6 +144,7 @@ main {
     flex-direction: column;
     padding: 24px;
     gap: 18px;
+    align-items: center;
 }
 
 .imageContenedor {
@@ -175,6 +176,13 @@ main {
     object-fit: cover;
 }
 
+.formulario .input {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    gap: 10px;
+}
+
 .formulario input {
     padding: 8px;
     border-radius: 8px;
@@ -182,4 +190,42 @@ main {
 
 .formModal .botonesForm button {
     margin-bottom: 24px;
+}
+
+@media only screen and (max-width: 630px) {
+
+    .contenedorPerfil {      
+        width: 90%;
+    }
+
+    .contenedorPedidos {
+        width: 90%;
+    }
+
+    .contenedorPedidos details {
+        width: 90%;
+        position: relative;
+    }
+
+    .fondoModal .modal {
+        display: flex;
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .imageContenedor {
+        width: 150px;
+        height: 150px;
+    }
+
+    .botonesForm {
+        display: flex;
+        gap: 10px;
+    }
+
+    .formModal .botonesForm button {
+        margin-bottom: 24px;
+        width: 120px;
+    }
+
 }

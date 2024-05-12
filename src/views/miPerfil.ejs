@@ -50,6 +50,10 @@
                 <summary class="pedido">Compra 120321</summary>
                 <div class="info">Facturas, precio $6000 </div>
             </details>
+            <details>
+                <summary class="pedido">Compra 120321</summary>
+                <div class="info">Facturas, precio $6000 </div>
+            </details>
 
         </div>
 
@@ -67,14 +71,22 @@
                     </div>
                     <input type="file" accept="image/*" name="image" id="image" style="display: none;">
 
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre">
+                    <div class="input">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" name="nombre" id="nombre">
+                    </div>
 
-                    <label for="apellido">Apellido:</label>
-                    <input type="text" name="apellido" id="apellido">
+                    <div class="input">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" name="apellido" id="apellido">
+                    </div>
 
-                    <label for="email">Email:</label>
-                    <input type="text" name="email" id="email">
+                    <div class="input">
+                        <label for="email">Email:</label>
+                        <input type="text" name="email" id="email" autocomplete="Email">  
+                    </div>
+
+                    
 
                 </div>
 
