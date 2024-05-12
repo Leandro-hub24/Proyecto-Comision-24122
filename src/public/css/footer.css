@@ -1,7 +1,7 @@
 /* footer */
 
 footer{
-    background-color: rosybrown;
+    background-color: #009D91;
     padding-bottom: 0.1px;
     width: 100%;
     min-height: 250px;
@@ -51,7 +51,7 @@ footer{
 
 .social-media-icon:hover{
     background: #fff;
-    color: #764ba2;
+    color: #009D91;
 }
 
 .social-media-icon i{

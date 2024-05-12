@@ -1,6 +1,6 @@
 .main {
     margin: 0 auto;
-    
+    color: black;
 }
 
 .contenedorForm {
@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     gap: 24px;
-    background-color: white;
+    background-color: #5dcec660;
     margin: 36px 0;
     border-radius: 8px;
 }
@@ -48,13 +48,31 @@
     justify-content: left;
     gap: 10px;
     font-size: 14px;
+    position: relative;
 }
 
 .input input {
     padding: 16px;
-    border: 1px solid ;
+    border: 1px solid white;
     border-radius: 8px;
     width: 260px;
+}
+
+.input .error {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 50% 100%, 50% 75%, 0% 75%);
+    height: 50px;
+    position: absolute;
+    background-color: rgba(255, 0, 0, 0.527);
+    left: 70px;
+    top: -25px;
+    display: flex;
+    padding: 12px;
+    border-radius: 8px;
+    justify-content: center;
+}
+
+.error p {
+    color: white;
 }
 
 .botones {
@@ -70,8 +88,9 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 8px;
+    background-color: white;
 }
 
 .password input {

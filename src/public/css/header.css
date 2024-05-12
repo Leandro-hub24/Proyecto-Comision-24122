@@ -10,7 +10,7 @@ header {
     justify-content: space-between;
     margin: 0 auto;
     align-items: center;  
-    background-color: rosybrown;
+    background-color: #009D91;
     border-radius: 8px;
 }
 
@@ -22,7 +22,7 @@ header {
 }
 
 .linkNav {
-    color: black;
+    color: white;
     font-size: 16px;
     font-weight: 700;
 }
@@ -41,9 +41,15 @@ header {
     border-radius: 8px;
     font-family: inherit;
     cursor: pointer;
-    color: black;
+    color: white;
     font-size: 16px;
-    font-weight: 700; 
+    font-weight: 700;
+    background-color: #009D91; 
+    border: 3px solid #FF9340;
+}
+
+.buttonNav:hover{
+    background-color: #FF9340;
 }
 
 .sesionIniciada {
@@ -67,7 +73,7 @@ header {
     flex-direction: column;
     width: 130px;
     border-radius: 8px;
-    background-color: white;
+    background-color: #009D91;
     position: absolute;
     top: 77px;
     right: -32px;

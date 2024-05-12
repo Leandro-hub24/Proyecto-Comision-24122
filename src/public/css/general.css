@@ -11,7 +11,7 @@ body {
     overflow-x: clip;
     background-color: #F6F4ED;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;;
 }
 
 main{
@@ -23,9 +23,11 @@ main{
     height: 40px;
     padding: 4px;
     border-radius: 8px;
+    border: none;
     font-family: inherit;
     cursor: pointer;
-    color: black;
+    color: white;
+    background-color: #FF9340;
     font-size: 16px;
     font-weight: 700; 
 }
@@ -36,6 +38,7 @@ input {
     font-weight: inherit;
     font-family: inherit;
     outline: 0;
+    border: none;
 }
 
 textarea {
@@ -52,5 +55,5 @@ label {
 
 a {
     text-decoration: none;
-    color: black;
+    color: white;
 }

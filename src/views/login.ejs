@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/header.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet"
@@ -39,14 +43,20 @@
             <form action="" class="form" id="form">
                 <div class="input">
                     <label for="email">Email:</label>
-                    <input type="text" name="email" id="email">       
+                    <input type="text" name="email" id="email">     
+                    <div class="error animate__animated animate__fadeInUp" id="errorEmail" style="display: none;">
+                        <p>Email no valido</p>
+                    </div>  
                 </div>
 
                 <div class="input">
                     <label for="pass">Contraseña:</label>
-                    <div class="password">
+                    <div class="password" id="password">
                         <input type="password" name="pass" id="pass">
                         <img src="images/icons/show-regular-24.png" alt="" id="show">
+                        <div class="error animate__animated animate__fadeInUp" id="errorPass" style="display: none;">
+                            <p>Contraseña no valida</p>
+                        </div>
                     </div>
                 </div>
 
