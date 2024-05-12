@@ -10,12 +10,14 @@ body {
     /* font-family: 'Roboto Condensed', sans-serif; */
     overflow-x: clip;
     background-color: #F6F4ED;
-    display: flex;
-    flex-direction: column;;
+    /* display: flex;
+    flex-direction: column; */
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
-main{
-    min-height: 70vh;
+main {
+    min-height: 80vh;
 }
 
 .btt {
