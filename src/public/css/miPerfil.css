@@ -181,6 +181,7 @@ main {
     flex-direction: column;
     justify-content: left;
     gap: 10px;
+    width: 100%;
 }
 
 .formulario input {
@@ -209,13 +210,13 @@ main {
 
     .fondoModal .modal {
         display: flex;
-        max-width: 90%;
+        width: 75%;
         max-height: 90%;
     }
 
     .imageContenedor {
-        width: 150px;
-        height: 150px;
+        width: 240px;
+        height: 240px;
     }
 
     .botonesForm {
