@@ -85,6 +85,7 @@ main {
     border: none;
     border-radius: 8px;
     width: 400px;
+    border: 1px solid white;
 }
 
 .boton {
