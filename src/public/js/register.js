@@ -87,6 +87,7 @@ function postFetch(nombre, apellido, email, pass, image64) {
                 icon: "error", 
                 title: data.error,
             })
+            document.getElementById('submit').disabled = false
 
         }
         
