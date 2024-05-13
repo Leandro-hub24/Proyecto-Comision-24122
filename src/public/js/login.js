@@ -62,6 +62,7 @@ function postFetch() {
                     icon: "error", 
                     title: data.msg,
                 })
+                document.getElementById('submit').disabled = false
 
             }
             
