@@ -77,9 +77,9 @@ function registro(){
 
 document.getElementById('submit').addEventListener('click', () => {
     if(validarEmail(document.getElementById('email').value)){
-        document.getElementById('email').style.borderColor = 'black'
+        document.getElementById('email').style.borderColor = 'white'
         if(document.getElementById('pass').value !== ''){
-            document.getElementById('password').style.borderColor = 'black'
+            document.getElementById('password').style.borderColor = 'white'
             document.getElementById('submit').disabled = true
             postFetch()
         }else{
