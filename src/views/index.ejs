@@ -8,8 +8,8 @@
 
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/general.css">
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/index.css">
     <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet"
         crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
@@ -28,7 +28,36 @@
 
     <%- include('partials/header.ejs'); -%>
         <main class="main">
-            Pagina en proceso
+            
+            <section class="banner">
+                <div class="texto">
+                    <h2>Dulces Sueños</h2>
+                    <p>Pasteleria 100% artesanal</p>
+                </div>      
+            </section>
+            
+            <section class="masVendidos">
+                <h4>Más vendidos</h4>
+                <div class="cards" id="cards">
+
+                    <% productos.map( (producto) => { %>
+                    <div class="card">
+                        <div class="img">
+                            <img src="<%= producto.img_url %>" alt="Img">
+                        </div>
+                        
+                        <h4><%= producto.nombre %></h4>
+                        <p><%= producto.descripcion %></p>
+                        <p>$<span><%= producto.precio %></span></p>
+    
+                    </div>
+                    <% }) %>
+
+            </div>
+            </section>
+
+
+
         </main>
 
 
