@@ -28,6 +28,14 @@ header {
     border: 3px solid #FF9340;
 }
 
+.drop-down {
+    background-color: #009d90a4;
+}
+
+.drop-down1 {
+    background-color: #009d90a4;
+}
+
 .banner {
     background-image: url('../images/img_fondo.jpg');
     background-position: center;

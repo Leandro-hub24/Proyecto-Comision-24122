@@ -9,7 +9,7 @@ export const getIndex = async (req, res) => {
     try {
     
         // Consulta SQL
-        const consulta = 'SELECT * FROM productos ORDER BY nombre LIMIT 4 OFFSET 0';
+        const consulta = 'SELECT * FROM productos WHERE stock > 0 ORDER BY nombre  LIMIT 4 OFFSET 0 ';
         // Ejecutar la consulta
         const resultado = await client.query(consulta);;
     
