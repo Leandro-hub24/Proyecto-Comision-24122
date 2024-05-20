@@ -13,6 +13,7 @@ import registerRoutes from './routes/register.routes.js'
 import miPerfilRoutes from './routes/mi.perfil.routes.js'
 import quienesSomosRoutes from './routes/quienes.somos.routes.js'
 import contactoRoutes from './routes/contacto.routes.js'
+import vistaProductosRoutes from './routes/vista.productos.routes.js'
 
 
 const app = express()
@@ -44,6 +45,7 @@ app.use(indexRoutes)
 app.use(miPerfilRoutes)
 app.use(quienesSomosRoutes)
 app.use(contactoRoutes)
+app.use(vistaProductosRoutes)
 
 app.get('/logout', (req, res) => {
 

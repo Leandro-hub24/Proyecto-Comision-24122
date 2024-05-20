@@ -1,0 +1,98 @@
+body {
+    /* display: grid;
+    grid-template-rows: auto 1fr auto; */
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.productos {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.productos > h3 {
+    text-align: center;
+    font-size: 48px;
+    padding: 24px;
+}
+
+/* Cards */
+
+.cards {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    max-width: 1115px;
+    justify-content: center;
+}
+
+.cards .card{
+    width: 240px;
+    border-radius: 8px;
+    background-color: #5dcec660;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.card .img {
+    width: 240px;
+    height: 160px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card .img > img {
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.card > h4 {
+    padding: 8px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.card > p {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 2px;
+}
+
+.card > span {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Paginas */
+
+.paginas{
+    padding: 24px 0 48px 0;
+}
+.paginas button{
+    float: right;
+    width: 141px;
+    height: 40px;
+    padding: 4px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 8px;
+    cursor: pointer;
+    
+}

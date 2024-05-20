@@ -130,5 +130,50 @@ header {
     font-weight: 500;
 }
 
+footer {
+    margin-top: 48px;
+}
 
+@media only screen and (max-width: 1280px) {
 
+    .banner .texto {
+        bottom: 10%;
+    }
+
+}
+
+@media only screen and (max-width: 800px) {
+
+    .banner .texto {
+        bottom: 10%;
+    }
+    
+    .texto > h2 {
+        font-size: 54px;
+        font-weight: bold;
+    }
+    
+    .texto > p {
+        font-size: 26px;
+        font-weight: 700;
+    }
+
+}
+
+@media only screen and (max-width: 500px) {
+
+    .banner .texto {
+        bottom: 10%;
+    }
+    
+    .texto > h2 {
+        font-size: 42px;
+        font-weight: bold;
+    }
+    
+    .texto > p {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+}
