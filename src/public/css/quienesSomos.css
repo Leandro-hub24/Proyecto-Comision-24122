@@ -16,6 +16,11 @@
     text-align: center;
 } */
 
+.img {
+    display: flex;
+    justify-content: center;
+}
+
 .quienesSomos {
     display: flex;
     flex-direction: column;
