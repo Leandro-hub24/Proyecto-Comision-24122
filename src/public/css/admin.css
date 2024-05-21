@@ -85,7 +85,7 @@
 .cards .card{
     width: 240px;
     border-radius: 8px;
-    background-color: antiquewhite;
+    background-color: #5dcec660;
     display: flex;
     flex-direction: column;
     align-items: center;
