@@ -196,9 +196,8 @@ padding: 0 6px;
 
     .pagesCel {
         display: flex;
-        padding: 0 24px;
+        padding: 0 6px;
         align-items: center;
-        gap: 16px;
         position: relative;
     }
 
@@ -231,6 +230,18 @@ padding: 0 6px;
 
     .nav {
         max-width: 90%;
+    }
+
+    .cart {
+        gap: 24px;
+    }
+
+    .sesionIniciada {
+        margin-right: 16px;
+    }
+
+    .sessionCel {
+        margin-right: 16px;
     }
 
 }
