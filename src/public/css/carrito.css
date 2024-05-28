@@ -1,0 +1,25 @@
+.carrito {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.288);
+    position: fixed;
+    z-index: 10;
+}
+
+.contenedorCarrito {
+    height: 60%;
+    width: 20%;
+    background-color: aqua;
+    right: 0;
+    top: 0;
+    position: absolute;
+    border-bottom-left-radius: 8px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    transition: ease-in-out 0.7s;
+}
+
+.abrir {
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+    -webkit-clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+}

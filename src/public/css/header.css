@@ -82,6 +82,53 @@ header {
     background-color: #FF9340;
 }
 
+.cart {
+    display: flex;  
+    gap: 38px;
+}
+
+.svg {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cant {
+position: absolute;
+top: 12px;
+right: -11px;
+background-color: #ff9340f1;
+border-radius: 50px;
+padding: 0 6px;
+}
+
+.cant > span {
+    color: white;
+    font-weight: 700;
+}
+
+.svg > svg {
+    width: 32px;
+    cursor: pointer;
+}
+
+
+.precio {
+    position: absolute;
+    bottom: 0;
+}
+
+.precio > p {
+    color: white;
+    font-weight: 700;
+}
+
+.precio > span {
+    color: white;
+    font-weight: 700;
+}
+
 .sesionIniciada {
     width: 70px;
     height: 70px;
