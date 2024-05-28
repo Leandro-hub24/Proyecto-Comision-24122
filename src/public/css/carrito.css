@@ -9,7 +9,7 @@
 .contenedorCarrito {
     height: 60%;
     width: 20%;
-    background-color: aqua;
+    background-color: #F6F4ED;
     right: 0;
     top: 0;
     position: absolute;
@@ -17,10 +17,68 @@
     clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
     -webkit-clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
     transition: ease-in-out 0.7s;
+    overflow-y: scroll;
 }
 
 .abrir {
     
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.acciones > button {
+    height: auto;
+    width: 120px;
+}
+
+
+/* Cards */
+
+.cardsCarrito {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    max-width: 1115px;
+    justify-content: center;
+}
+
+.cardsCarrito .cardCarrito{
+    width: 240px;
+    border-radius: 8px;
+    background-color: #5dcec660;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.cardCarrito .img {
+    width: 240px;
+    height: 160px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.cardCarrito .img > img {
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.cardCarrito > h4 {
+    padding: 8px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.cardCarrito > p {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 2px;
+}
+
+.cardCarrito > span {
+    font-size: 18px;
+    font-weight: 500;
 }

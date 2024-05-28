@@ -72,3 +72,28 @@ export const postProducto = async (req, res) => {
       res.status(500).json({ error: 'Error al consultar productos' });
     }
 }
+
+export const getProductoId = async (req, res) => {
+
+  const client = await db.connect()
+  let producto
+  const id = req.params.id
+
+  try {
+  
+      // Consulta SQL
+      const consulta = `SELECT * FROM productos WHERE producto_id = ${id}`;
+  
+      // Ejecutar la consulta
+      const resultado = await client.query(consulta);
+  
+      console.log('Producto:', resultado.rows); // Imprimir los resultados
+      producto = resultado.rows
+      res.status(200).json(producto)
+    } catch (error) {
+      console.error('Error al buscar producto:', error);
+      res.status(500).json({ error: 'Error al buscar producto' });
+    }
+
+    
+}
