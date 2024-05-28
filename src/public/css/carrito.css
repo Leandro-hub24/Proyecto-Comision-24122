@@ -14,12 +14,13 @@
     top: 0;
     position: absolute;
     border-bottom-left-radius: 8px;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+    -webkit-clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
     transition: ease-in-out 0.7s;
 }
 
 .abrir {
-    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
-    -webkit-clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+    
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
