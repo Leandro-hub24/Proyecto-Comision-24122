@@ -81,11 +81,11 @@ function quitarCarrito(id) {
         return lista.filter(elemento => elemento.producto_id !== id);
     }
     const index = (lista) => {
-        let callback = {};
+        let producto = {};
 
-        callback = lista.find(elemento => elemento.producto_id === id);
-        let l = lista.indexOf(callback)
-        return l
+        producto = lista.find(elemento => elemento.producto_id === id);
+        let i = lista.indexOf(producto)
+        return i
     }
     
     cantCarrito -= compra[index(compra)].cantidad
