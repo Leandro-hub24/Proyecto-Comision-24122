@@ -1,3 +1,5 @@
+
+
 let i = 0
 document.getElementById('cargarMas').addEventListener('click', () => {
 
@@ -32,3 +34,6 @@ document.getElementById('cargarMas').addEventListener('click', () => {
         })
     })
 })
+
+
+ 

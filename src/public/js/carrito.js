@@ -1,3 +1,9 @@
+function formatear (i){
+    const decimal = Number(i.replace(",", ".")).toFixed(2); //cambiamos la "," por el "." por si introduce un string con ","
+    const formated = decimal.replace(".",",").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return formated;
+ }
+
 document.getElementById('carrito').addEventListener('click', function(event) {
     if (event.target === document.getElementById('carrito')) {
         cerrarCarrito()
@@ -35,7 +41,7 @@ function addCarrito(id) {
                         </div> 
                         <h4>${producto[0].nombre}</h4>
                         <p>${producto[0].descripcion}</p>
-                        <p>$<span>${producto[0].precio}</span></p>
+                        <p>$<span>${formatear(`${producto[0].precio}`)}</span></p>
                     </div>
                 `
                 let i = {producto_id: producto[0].producto_id,
@@ -52,5 +58,6 @@ function addCarrito(id) {
 
 function actualizarCarrito() {
     document.getElementById('cant').innerHTML = cantCarrito
-    document.getElementById('precioTotal').innerHTML = precioCarrito
+    document.getElementById('precioTotal').innerHTML = formatear(`${precioCarrito}`)
+    document.getElementById('totalCarrito').innerHTML = formatear(`${precioCarrito}`)
 }

@@ -31,6 +31,7 @@
     
     <%- include('partials/carrito.ejs'); -%> 
 
+
     <main class="main">
 
         <section class="productos">
@@ -51,7 +52,11 @@
                             <p><%= producto.descripcion %></p>
                             <p>$<span><%= producto.precio %></span></p>
                             <div class="acciones">
-                                <button class="btt" onclick="addCarrito(<%= producto.producto_id %>)">Comprar</button>
+                                <% if(login) {%>
+                                    <button class="btt" onclick="addCarrito(<%= producto.producto_id %>)">Comprar</button>
+                                <% } else { %>
+                                    <button class="btt">Comprar</button>
+                                <% } %>    
                             </div>
                         </div>
                         <% }) %>
@@ -76,7 +81,11 @@
           
     <%- include('partials/footer.ejs'); -%> 
     <script src="js/vistaProductos.js"></script>
+
+    <% if(login) { %>
     <script src="js/carrito.js"></script>
+    <% } %>
+
         
 </body>
 </html>
