@@ -47,7 +47,7 @@ function addCarrito(id) {
                             
                         </div>
                         <div class="med">
-                            <i class='bx bxs-x-square'></i>
+                            <i class='bx bxs-x-square' onclick="quitarCarrito(${producto[0].producto_id})"></i>
                         </div>
                         <div class="der">
                             <p>$<span id="precioCant-${producto[0].producto_id}">${formatear(`${producto[0].precio}`)}</span></p>
@@ -73,4 +73,24 @@ function actualizarCarrito() {
     document.getElementById('cant').innerHTML = cantCarrito
     document.getElementById('precioTotal').innerHTML = formatear(`${precioCarrito}`)
     document.getElementById('totalCarrito').innerHTML = formatear(`${precioCarrito}`)
+}
+
+function quitarCarrito(id) {
+    document.getElementById(`card-${id}`).remove()
+    const filtro = (lista) => {
+        return lista.filter(elemento => elemento.producto_id !== id);
+    }
+    const index = (lista) => {
+        let callback = {};
+
+        callback = lista.find(elemento => elemento.producto_id === id);
+        let l = lista.indexOf(callback)
+        return l
+    }
+    
+    cantCarrito -= compra[index(compra)].cantidad
+    precioCarrito -= (compra[index(compra)].precio*compra[index(compra)].cantidad)
+
+    compra = filtro(compra)
+    actualizarCarrito()
 }
