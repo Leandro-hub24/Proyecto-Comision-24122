@@ -34,6 +34,7 @@ function addCarrito(id) {
     fetch(url)
         .then(res => res.json())
         .then((producto) => {
+            // agregar condicional por si se repite el producto 
             document.getElementById('cardsCarrito').innerHTML += `
                     <div class='cardCarrito' id="card-${producto[0].producto_id}">
                         <div class="izq">
@@ -99,4 +100,6 @@ function inputCant(id) {
     if(Number(document.getElementById(`cantProd-${id}`).value) === 0) {
         quitarCarrito(id)
     }
+
+    //comprarar con el array de compra para saber si la cantidad sube o disminuye
 }
