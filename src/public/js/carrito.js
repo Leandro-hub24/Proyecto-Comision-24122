@@ -96,7 +96,7 @@ function quitarCarrito(id) {
 }
 
 function inputCant(id) {
-    if(document.getElementById(`cantProd-${id}`).value === "0") {
+    if(Number(document.getElementById(`cantProd-${id}`).value) === 0) {
         quitarCarrito(id)
     }
 }
