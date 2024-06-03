@@ -100,9 +100,7 @@ function quitarCarrito(id) {
 function inputCant(id) {
     if(Number(document.getElementById(`cantProd-${id}`).value) === 0) {
         quitarCarrito(id)
-    }
-
-    if(Number(document.getElementById(`cantProd-${id}`).value) >= 1) {
+    }else if(Number(document.getElementById(`cantProd-${id}`).value) >= 1) {
         if(Number(document.getElementById(`cantProd-${id}`).value) > Number(compra[index(compra, id)].cantidad)) {
             compra[index(compra, id)].cantidad += 1
             cantCarrito += 1
