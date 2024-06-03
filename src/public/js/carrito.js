@@ -76,21 +76,22 @@ function actualizarCarrito() {
     document.getElementById('totalCarrito').innerHTML = formatear(`${precioCarrito}`)
 }
 
+const filtro = (lista, id) => {
+    return lista.filter(elemento => elemento.producto_id !== id);
+}
+const index = (lista, id) => {
+    let producto = {};
+
+    producto = lista.find(elemento => elemento.producto_id === id);
+    let i = lista.indexOf(producto)
+    return i
+}
+
 function quitarCarrito(id) {
     document.getElementById(`card-${id}`).remove()
-    const filtro = (lista) => {
-        return lista.filter(elemento => elemento.producto_id !== id);
-    }
-    const index = (lista) => {
-        let producto = {};
-
-        producto = lista.find(elemento => elemento.producto_id === id);
-        let i = lista.indexOf(producto)
-        return i
-    }
     
-    cantCarrito -= compra[index(compra)].cantidad
-    precioCarrito -= (compra[index(compra)].precio*compra[index(compra)].cantidad)
+    cantCarrito -= compra[index(compra, id)].cantidad
+    precioCarrito -= (compra[index(compra, id)].precio * compra[index(compra, id)].cantidad)
 
     compra = filtro(compra)
     actualizarCarrito()
@@ -99,6 +100,22 @@ function quitarCarrito(id) {
 function inputCant(id) {
     if(Number(document.getElementById(`cantProd-${id}`).value) === 0) {
         quitarCarrito(id)
+    }
+
+    if(Number(document.getElementById(`cantProd-${id}`).value) >= 1) {
+        if(Number(document.getElementById(`cantProd-${id}`).value) > Number(compra[index(compra, id)].cantidad)) {
+            compra[index(compra, id)].cantidad += 1
+            cantCarrito += 1
+            precioCarrito += compra[index(compra, id)].precio
+            document.getElementById(`precioCant-${id}`).innerHTML = formatear(`${compra[index(compra, id)].precio * compra[index(compra, id)].cantidad}`)
+            actualizarCarrito()
+        } else if(Number(document.getElementById(`cantProd-${id}`).value) < Number(compra[index(compra, id)].cantidad)) {
+            compra[index(compra, id)].cantidad -= 1
+            cantCarrito -= 1
+            precioCarrito -= compra[index(compra, id)].precio
+            document.getElementById(`precioCant-${id}`).innerHTML = formatear(`${compra[index(compra, id)].precio * compra[index(compra, id)].cantidad}`)
+            actualizarCarrito()
+        }
     }
 
     //comprarar con el array de compra para saber si la cantidad sube o disminuye
