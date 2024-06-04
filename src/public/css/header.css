@@ -243,6 +243,10 @@ padding: 0 6px;
         right: -24px;
        
     }
+
+    .drop-down {
+        right: -16px;
+    }
     
     .show-drop-down1 {
         display: flex;

@@ -59,7 +59,7 @@ function addCarrito(id) {
                             </div>
                             <div class="der">
                                 <p>$<span id="precioCant-${producto[0].producto_id}">${formatear(`${producto[0].precio}`)}</span></p>
-                                <input type="number" name="cantProd" id="cantProd-${producto[0].producto_id}" value="1" oninput="inputCant(${producto[0].producto_id})">
+                                <input type="number" name="cantProd" id="cantProd-${producto[0].producto_id}" value="1" oninput="inputCant(${producto[0].producto_id})" onkeydown="return not(event)>
                                 
                             </div>
                         </div>

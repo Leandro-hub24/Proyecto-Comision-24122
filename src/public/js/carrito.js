@@ -43,7 +43,7 @@ function showCarritoSave() {
                             </div>
                             <div class="der">
                                 <p>$<span id="precioCant-${compra.producto_id}">${formatear(`${compra.precio * compra.cantidad}`)}</span></p>
-                                <input type="number" name="cantProd" id="cantProd-${compra.producto_id}" value="${compra.cantidad}" oninput="inputCant(${compra.producto_id})">
+                                <input type="number" name="cantProd" id="cantProd-${compra.producto_id}" value="${compra.cantidad}" oninput="inputCant(${compra.producto_id})" onkeydown="return not(event)">
                                 
                             </div>
                         </div>
@@ -112,6 +112,11 @@ function quitarCarrito(id) {
 
     compra = filtro(compra, id)
     actualizarCarrito()
+}
+
+function not(event) {
+    event.preventDefault()
+    return false
 }
 
 function inputCant(id) {
