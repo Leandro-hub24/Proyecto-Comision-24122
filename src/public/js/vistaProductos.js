@@ -45,7 +45,7 @@ function addCarrito(id) {
                 document.getElementById('cardsCarrito').innerHTML += `
                         <div class='cardCarrito' id="card-${producto[0].producto_id}">
                             <div class="izq">
-                                <div class="img">
+                                <div class="imgC">
                                     <img src="${producto[0].img_url}" alt="Img">
                                 </div>
                                 <div class="infoPro">
