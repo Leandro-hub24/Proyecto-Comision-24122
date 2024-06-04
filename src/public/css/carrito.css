@@ -4,6 +4,7 @@
     background-color: rgba(0, 0, 0, 0.288);
     position: fixed;
     z-index: 10;
+    top: 0;
 }
 
 .contenedorCarrito {
@@ -74,13 +75,13 @@
     align-items: center;
 }
 
-.img {
+.imgC {
     width: 85px;
     border-radius: 8px;
     overflow: hidden;
 }
 
-.img > img {
+.imgC > img {
     height: 100%;
     width: 100%;
     border-radius: 8px;

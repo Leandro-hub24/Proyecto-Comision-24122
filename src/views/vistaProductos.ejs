@@ -51,11 +51,7 @@
                             <p><%= producto.descripcion %></p>
                             <p>$<span><%= producto.precio %></span></p>
                             <div class="acciones">
-                                <% if(login) {%>
-                                    <button class="btt" onclick="addCarrito(<%= producto.producto_id %>)">Comprar</button>
-                                <% } else { %>
-                                    <button class="btt">Comprar</button>
-                                <% } %>    
+                                <button class="btt" onclick="addCarrito(<%= producto.producto_id %>)">Comprar</button>   
                             </div>
                         </div>
                         <% }) %>
@@ -80,10 +76,7 @@
           
     <%- include('partials/footer.ejs'); -%> 
     <script src="js/vistaProductos.js"></script>
-
-    <script src="js/carrito.js"></script>
    
-
         
 </body>
 </html>
