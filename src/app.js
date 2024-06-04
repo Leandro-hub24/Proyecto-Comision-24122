@@ -51,8 +51,8 @@ app.get('/logout', (req, res) => {
 
     res.clearCookie("loggedin");
     res.clearCookie("idUser");
-    res.clearCookie("nombre");
-    res.clearCookie("apellido");
+    res.clearCookie("nombres");
+    res.clearCookie("apellidos");
     res.clearCookie("img_url");
     res.clearCookie("rol");
     res.redirect('/')
