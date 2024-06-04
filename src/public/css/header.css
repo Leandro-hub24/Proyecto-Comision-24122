@@ -84,6 +84,11 @@ header {
 
 .cart {
     display: flex;  
+    gap: 24px;
+}
+
+.cartCel {
+    display: none;  
     gap: 38px;
 }
 
@@ -116,7 +121,7 @@ padding: 0 6px;
 
 .precio {
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
 }
 
 .precio > p {
@@ -178,6 +183,7 @@ padding: 0 6px;
 
 @media only screen and (max-width: 1160px) {
 
+
     .sessionCel {
         display: block;
     }
@@ -186,6 +192,9 @@ padding: 0 6px;
         display: none;
     }
 
+    .cart {
+        gap: 40px;
+    }
 }
 
 @media only screen and (max-width: 800px) {
@@ -233,7 +242,7 @@ padding: 0 6px;
     }
 
     .cart {
-        gap: 24px;
+        gap: 40px;
     }
 
     .sesionIniciada {

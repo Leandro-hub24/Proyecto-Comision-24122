@@ -142,3 +142,51 @@
     font-size: 16px;
     font-weight: 500;
 }
+
+@media only screen and (max-width: 1700px) {
+
+    .contenedorCarrito {
+        width: 30%;
+    }
+
+}
+
+@media only screen and (max-width: 1500px) {
+
+    .contenedorCarrito {
+        width: 35%;
+    }
+
+}
+
+@media only screen and (max-width: 1200px) {
+
+    .contenedorCarrito {
+        width: 45%;
+    }
+
+}
+
+@media only screen and (max-width: 1000px) {
+
+    .contenedorCarrito {
+        width: 55%;
+    }
+
+}
+
+@media only screen and (max-width: 800px) {
+
+    .contenedorCarrito {
+        width: 70%;
+    }  
+
+}
+
+@media only screen and (max-width: 560px) {
+
+    .contenedorCarrito {
+        width: 100%;
+    }  
+
+}
