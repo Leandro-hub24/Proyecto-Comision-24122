@@ -26,7 +26,7 @@ app.use(express.urlencoded({extended: true, limit: '50mb', parameterLimit:50000}
 
 app.use(
 	cors({
-		origin: ["", "http://localhost:8080", "https://api.imgur.com/3/image"],
+		origin: ["https://grupo-22.vercel.app/", "http://localhost:8080", "https://api.imgur.com/3/image"],
 		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 		credentials: true,
         allowedHeaders: ['Content-Type']
