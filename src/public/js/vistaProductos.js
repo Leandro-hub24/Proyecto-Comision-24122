@@ -60,11 +60,12 @@ function addCarrito(id) {
                             </div>
                             <div class="der">
                                 <p>$<span id="precioCant-${producto[0].producto_id}">${formatear(`${producto[0].precio}`)}</span></p>
-                                <input type="number" name="cantProd" id="cantProd-${producto[0].producto_id}" value="1" oninput="inputCant(${producto[0].producto_id})" onkeydown="return not(event)">
+                                <input type="number" name="cantProd-${producto[0].producto_id}" id="cantProd-${producto[0].producto_id}" oninput="inputCant(${producto[0].producto_id})" onkeydown="return not(event)">
                                 
                             </div>
                         </div>
                     `
+                 
                 let i = {
                     nombre: producto[0].nombre,
                     descripcion: producto[0].descripcion,
@@ -76,15 +77,18 @@ function addCarrito(id) {
                 compra.push(i)
                 cantCarrito += 1
                 precioCarrito += producto[0].precio
+                document.getElementById(`cantProd-${producto[0].producto_id}`).setAttribute("value", "1")
                 actualizarCarrito()
             })
+        
+
     } else {
         compra[index(compra, id)].cantidad += 1
         cantCarrito += 1
         precioCarrito += compra[index(compra, id)].precio
         document.getElementById(`precioCant-${id}`).innerHTML = formatear(`${compra[index(compra, id)].precio * compra[index(compra, id)].cantidad}`)
         let j = document.getElementById(`cantProd-${id}`).value
-        document.getElementById(`cantProd-${id}`).value = Number(j) + Number(1)
+        document.getElementById(`cantProd-${id}`).setAttribute("value", `${(Number(j) + Number(1))}`)
         actualizarCarrito()
     }
 
