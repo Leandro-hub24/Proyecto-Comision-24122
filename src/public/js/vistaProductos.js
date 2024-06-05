@@ -27,7 +27,8 @@ document.getElementById('cargarMas').addEventListener('click', () => {
                             <p>${producto.descripcion}</p>
                             <p>$<span>${producto.precio}</span></p>
                             <div class="acciones">
-                            </div>
+                                <button class="btt" onclick="addCarrito(${producto.producto_id})">Comprar</button>   
+                            </div> 
             </div>
             
             `
