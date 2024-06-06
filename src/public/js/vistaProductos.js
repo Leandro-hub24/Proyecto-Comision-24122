@@ -60,7 +60,11 @@ function addCarrito(id) {
                             </div>
                             <div class="der">
                                 <p>$<span id="precioCant-${producto[0].producto_id}">${formatear(`${producto[0].precio}`)}</span></p>
-                                <input type="number" name="cantProd-${producto[0].producto_id}" id="cantProd-${producto[0].producto_id}" oninput="inputCant(${producto[0].producto_id})" onkeydown="return not(event)">
+                                <div class="inputPro">
+                                    <i class='bx bx-minus mp' onclick="minus(${producto[0].producto_id})"></i>
+                                    <input type="number" name="cantProd-${producto[0].producto_id}" id="cantProd-${producto[0].producto_id}" oninput="inputCant(${producto[0].producto_id})" onkeydown="return not(event)">
+                                    <i class='bx bx-plus mp mp1' onclick="plus(${producto[0].producto_id})" ></i>
+                                </div>
                                 
                             </div>
                         </div>

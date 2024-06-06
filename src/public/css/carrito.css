@@ -132,16 +132,53 @@
     width: 40%;
     justify-content: center;
     align-items: center;
+    gap: 4px;
 }
 
-.der > input{
-    width: 40px;
+.inputPro > input{
+    width: 30px;
     text-align: center;
+    height: 22px;
 }
 
-.der > span {
+
+
+input[type=number]
+{
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+.inputPro > span {
     font-size: 16px;
     font-weight: 500;
+}
+
+.inputPro {
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+    align-items: center;
+}
+
+.mp {
+    color: white;
+    background-color: #FF9340;
+    font-size: 22px;
+    border-radius: 8px 0 0 8px;
+    cursor: pointer;
+}
+
+.mp1 {
+    border-radius: 0 8px 8px 0;
 }
 
 @media only screen and (max-width: 1700px) {
