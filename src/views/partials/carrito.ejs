@@ -12,7 +12,11 @@
         </div>
     
         <div class="carritoInf">
-            <button class="btt">Finalizar compra</button>
+            <% if(login) { %>
+                <button class="btt" id="submitCarrito" onclick="submit()">Finalizar compra</button>
+            <% } else { %>
+                <button class="btt" id="submitCarrito" onclick="submitSS()">Finalizar compra</button>
+            <% } %>    
             <h4>Total: $<span id="totalCarrito">0,00</span></h4>
         </div>
     </div>

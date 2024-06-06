@@ -22,49 +22,57 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-        <link rel="icon" type="image/x-icon" href="images/icons/logo.ico">
+    <link rel="icon" type="image/x-icon" href="images/icons/logo.ico">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css" rel="stylesheet">
 
 </head>
 
 <body>
 
     <%- include('partials/header.ejs'); -%>
-    <%- include('partials/carrito.ejs'); -%> 
-        <main class="main">
-            
-            <section class="banner">
-                <div class="texto">
-                    <h2>Dulces Sueños</h2>
-                    <p>Pasteleria 100% artesanal</p>
-                </div>      
-            </section>
-            
-            <section class="masVendidos">
-                <h4>Destacados</h4>
-                <div class="cards" id="cards">
+        <%- include('partials/carrito.ejs'); -%>
+            <main class="main">
 
-                    <% productos.map( (producto) => { %>
-                    <div class="card">
-                        <div class="img">
-                            <img src="<%= producto.img_url %>" alt="Img">
-                        </div>
-                        
-                        <h4><%= producto.nombre %></h4>
-                        <p><%= producto.descripcion %></p>
-                        <p>$<span><%= producto.precio %></span></p>
-    
+                <section class="banner">
+                    <div class="texto">
+                        <h2>Dulces Sueños</h2>
+                        <p>Pasteleria 100% artesanal</p>
                     </div>
-                    <% }) %>
+                </section>
 
-            </div>
-            </section>
+                <section class="masVendidos">
+                    <h4>Destacados</h4>
+                    <div class="cards" id="cards">
+
+                        <% productos.map( (producto)=> { %>
+                            <div class="card">
+                                <div class="img">
+                                    <img src="<%= producto.img_url %>" alt="Img">
+                                </div>
+
+                                <h4>
+                                    <%= producto.nombre %>
+                                </h4>
+                                <p>
+                                    <%= producto.descripcion %>
+                                </p>
+                                <p>$<span>
+                                        <%= producto.precio %>
+                                    </span></p>
+
+                            </div>
+                            <% }) %>
+
+                    </div>
+                </section>
 
 
 
-        </main>
+            </main>
 
 
-        <%- include('partials/footer.ejs'); -%>
+            <%- include('partials/footer.ejs'); -%>
 
 </body>
 

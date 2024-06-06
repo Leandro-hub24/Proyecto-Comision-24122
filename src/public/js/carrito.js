@@ -164,3 +164,34 @@ function plus(id) {
     document.getElementById(`precioCant-${id}`).innerHTML = formatear(`${compra[index(compra, id)].precio * compra[index(compra, id)].cantidad}`)
     actualizarCarrito()
 }
+
+function submitSS() {
+
+    if(compra.length === 0) {
+        Swal.fire({
+            icon: "warning", 
+            title: "El carrito se encuentra vacio"    
+            })
+    } else {
+        Swal.fire({
+        icon: "warning", 
+        title: "Debe iniciar sesión para poder realizar la compra",
+        footer: '<button class="btt" ><a href="/login" >Iniciar sesión</a></button>',
+        showConfirmButton: false    
+    })
+    }
+    
+}
+
+function submit() {
+
+    if(compra.length === 0) {
+        Swal.fire({
+            icon: "warning", 
+            title: "El carrito se encuentra vacio"    
+            })
+    } else {
+        
+    }
+    
+}

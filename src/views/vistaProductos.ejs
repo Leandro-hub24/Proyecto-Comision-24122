@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,68 +16,79 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" >
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css" rel="stylesheet">
 
-        <!-- favicon -->
-        <link rel="icon" type="image/x-icon" href="images/icons/logo.ico">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="images/icons/logo.ico">
 </head>
+
 <body>
-    
-    <%- include('partials/header.ejs'); -%> 
-    
-    <%- include('partials/carrito.ejs'); -%> 
 
-    <main class="main">
+    <%- include('partials/header.ejs'); -%>
 
-        <section class="productos">
-            <h3>Productos</h3>
-            
-            <div class="contenedor">
+        <%- include('partials/carrito.ejs'); -%>
+
+            <main class="main">
+
+                <section class="productos">
+                    <h3>Productos</h3>
+
+                    <div class="contenedor">
 
 
-                <div class="cards" id="cards">
+                        <div class="cards" id="cards">
 
-                        <% productos.map( (producto) => { %>
-                        <div class='card'>
-                            <div class="img">
-                                <img src="<%= producto.img_url %>" alt="Img">
-                            </div>
-                            
-                            <h4><%= producto.nombre %></h4>
-                            <p><%= producto.descripcion %></p>
-                            <p>$<span><%= producto.precio %></span></p>
-                            <div class="acciones">
-                                <button class="btt" onclick="addCarrito(<%= producto.producto_id %>)">Comprar</button>   
-                            </div>
+                            <% productos.map( (producto)=> { %>
+                                <div class='card'>
+                                    <div class="img">
+                                        <img src="<%= producto.img_url %>" alt="Img">
+                                    </div>
+
+                                    <h4>
+                                        <%= producto.nombre %>
+                                    </h4>
+                                    <p>
+                                        <%= producto.descripcion %>
+                                    </p>
+                                    <p>$<span>
+                                            <%= producto.precio %>
+                                        </span></p>
+                                    <div class="acciones">
+                                        <button class="btt"
+                                            onclick="addCarrito(<%= producto.producto_id %>)">Comprar</button>
+                                    </div>
+                                </div>
+                                <% }) %>
+
                         </div>
-                        <% }) %>
 
-                </div>
-                
 
-            </div>
-            
-            
-            
+                    </div>
 
-            <div class="paginas">
-                <div class="cargarMas">
-                    <button id="cargarMas" class="btt">Cargar más...</button>
-                </div>
-            </div>
-        </section>
 
-    </main>
 
-          
-    <%- include('partials/footer.ejs'); -%> 
-    <script src="js/vistaProductos.js"></script>
-   
-        
+
+                    <div class="paginas">
+                        <div class="cargarMas">
+                            <button id="cargarMas" class="btt">Cargar más...</button>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+
+
+            <%- include('partials/footer.ejs'); -%>
+                <script src="js/vistaProductos.js"></script>
+
+
 </body>
+
 </html>
