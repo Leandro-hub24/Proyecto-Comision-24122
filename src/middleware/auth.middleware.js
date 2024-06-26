@@ -11,16 +11,49 @@ export const authMiddleware = async (req, res, next) => {
     
     if (!token) return res.status(403).send({auth: false, message: 'Malformed token'}) */
     
-    const token = req.signedCookies['token']
-    console.log(token)
+    /* const token = req.signedCookies['token'] */
 
-    jwt.verify(token, SECRET_KEY, (err, decoded) => {
+
+    /* jwt.verify(token, SECRET_KEY, (err, decoded) => {
         
         if (err) return res.status(403).send({auth: false, message: 'Failed to authenticate token'});
 
         req.userId = decoded.idUser;
 
         next();
-    });    
+    }); */
+
+    if(req.signedCookies['token']) {
+
+        const token = req.signedCookies['token']
+
+        try {
+            const token1 = jwt.verify(token, SECRET_KEY);
+            /* console.log(token1.exp);
+            console.log(token1); */
+
+            if (Date.now > token1.exp) {
+                req.login = false
+                res.clearCookie("token")
+                next()
+            } else {
+                req.login = true;
+                req.user = token1;
+                next();
+            }
+            
+        } catch (error) {
+            return res.status(403).send({auth: false, message: error.message});
+        };
+
+    } else {
+        req.login = false
+        next()
+    }
+    
+    
+
+    
+    
 
 };
