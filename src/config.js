@@ -9,3 +9,5 @@ export const DB_USER = process.env.DB_USER || 'root'
 export const DB_PASSWORD = process.env.DB_PASSWORD || ''
 export const DB_DATABASE = process.env.DB_DATABASE || ''
 export const CLAVE = process.env.CLAVE
+export const SECRET_KEY = process.env.SECRET_KEY
+export const TOKEN_EXPIRES_IN = process.env.TOKEN_EXPIRES_IN

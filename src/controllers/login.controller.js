@@ -1,5 +1,7 @@
 import { db } from '@vercel/postgres'
 import bcryptjs from 'bcryptjs'
+import jwt from 'jsonwebtoken'
+import { SECRET_KEY, TOKEN_EXPIRES_IN } from '../config.js'
 
 export const getLogin = async (req, res) => {
     
@@ -42,10 +44,12 @@ export const postLogin = async (req, res) => {
                 res.cookie('apellidos', rows[0].apellido, { maxAge: 900000, httpOnly: true, secure: true, signed: true })
                 res.cookie('img_url', rows[0].img_url, { maxAge: 900000, httpOnly: true, secure: true, signed: true})
                 res.cookie('rol', rows[0].rol, { maxAge: 900000, httpOnly: true, secure: true, signed: true})
-
+                const token = jwt.sign({loggedin: true, idUser: rows[0].usuario_id, nombres: rows[0].nombre, apellidos: rows[0].apellido, img_url: rows[0].img_url, rol: rows[0].rol}, SECRET_KEY, {expiresIn: TOKEN_EXPIRES_IN})
+                res.cookie('token', token, { maxAge: 900000, httpOnly: true, secure: true, signed: true})
                 res.status(200).json({
                     msg: 'Ha iniciado sesión correctamente',
-                    login: true
+                    login: true,
+                    token
                 })
             }
 
