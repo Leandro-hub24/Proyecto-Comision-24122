@@ -1,8 +1,10 @@
 import jwt from 'jsonwebtoken'
 import { SECRET_KEY} from '../config.js'
+import { db } from '@vercel/postgres'
 
 export const authMiddleware = async (req, res, next) => {
 
+    const client = await db.connect()
     /* const authHeader = req.headers['authorization'];
 
     if (!authHeader) return res.status(403).send({auth: false, message: 'No se proveyó un token'})
@@ -23,22 +25,33 @@ export const authMiddleware = async (req, res, next) => {
         next();
     }); */
 
-    if(req.signedCookies['token']) {
+    
 
-        const token = req.signedCookies['token']
+    if(req.signedCookies['idUser']) {
+        let sesion
+        try {
+            // Consulta SQL
+            const consulta = `SELECT * FROM sesions WHERE usuario_id = ${req.signedCookies['idUser']}`;
+            // Ejecutar la consulta
+            sesion = await client.query(consulta);
+        } catch (error) {
+            console.error('Error al consultar la sesión:', error);
+            res.status(500).json({ error: 'Error al consultar la sesión' });
+        }
 
         try {
-            const token1 = jwt.verify(token, SECRET_KEY);
-            /* console.log(token1.exp);
-            console.log(token1); */
-
-            if (Date.now > token1.exp) {
+            const token = jwt.verify(sesion.rows[0].sesion, SECRET_KEY);
+            //console.log(token.exp);
+            //console.log(token);
+            const currentTimestamp = Math.floor(Date.now() / 1000);
+            
+            if (currentTimestamp > token.exp) {
                 req.login = false
-                res.clearCookie("token")
+                res.clearCookie("idUser")
                 next()
             } else {
                 req.login = true;
-                req.user = token1;
+                req.user = token;
                 next();
             }
             
@@ -51,9 +64,4 @@ export const authMiddleware = async (req, res, next) => {
         next()
     }
     
-    
-
-    
-    
-
 };

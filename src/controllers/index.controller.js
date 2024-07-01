@@ -5,7 +5,7 @@ export const getIndex = async (req, res) => {
     const client = await db.connect()
     let productos
     let pedidos
-    console.log(req.user)  
+    /* console.log(req.user)   */
 
     try {
     
@@ -20,7 +20,6 @@ export const getIndex = async (req, res) => {
 
         productos = resultado.rows
 
-        
 
           if(req.login){
             const usuarioSesion = {
