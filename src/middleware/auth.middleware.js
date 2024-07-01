@@ -45,7 +45,7 @@ export const authMiddleware = async (req, res, next) => {
             //console.log(token);
             const currentTimestamp = Math.floor(Date.now() / 1000);
             
-            if (currentTimestamp > token.exp) {
+            if (currentTimestamp >= token.exp) {
                 req.login = false
                 res.clearCookie("idUser")
                 next()

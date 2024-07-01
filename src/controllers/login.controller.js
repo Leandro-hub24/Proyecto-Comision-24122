@@ -21,6 +21,7 @@ export const getLogin = async (req, res) => {
 export const postLogin = async (req, res) => {
     const {email, pass} = req.body
     const client = await db.connect()
+    let token
 
     try {
 
@@ -43,25 +44,61 @@ export const postLogin = async (req, res) => {
                 res.cookie('apellidos', rows[0].apellido, { maxAge: 900000, httpOnly: true, secure: true, signed: true })
                 res.cookie('img_url', rows[0].img_url, { maxAge: 900000, httpOnly: true, secure: true, signed: true})
                 res.cookie('rol', rows[0].rol, { maxAge: 900000, httpOnly: true, secure: true, signed: true})
-                const token = jwt.sign({loggedin: true, idUser: rows[0].usuario_id, nombres: rows[0].nombre, apellidos: rows[0].apellido, img_url: rows[0].img_url, rol: rows[0].rol}, SECRET_KEY, {expiresIn: TOKEN_EXPIRES_IN})
+                token = jwt.sign({loggedin: true, idUser: rows[0].usuario_id, nombres: rows[0].nombre, apellidos: rows[0].apellido, img_url: rows[0].img_url, rol: rows[0].rol}, SECRET_KEY, {expiresIn: TOKEN_EXPIRES_IN})
 
+                let sesion
                 try {
-                    const query1 = {
-                      text: `INSERT INTO sesions (sesion, usuario_id) 
-                            VALUES ($1, $2)`,
-                      values: [
-                        token,
-                        rows[0].usuario_id
-                      ],
-                    };
-                    
+                    // Consulta SQL
+                    const consulta = `SELECT * FROM sesions WHERE usuario_id = ${rows[0].usuario_id}`;
                     // Ejecutar la consulta
-                    const insertUser = await client.query(query1)
-                    console.log('Filas afectadas:', insertUser.rowCount);  
+                    sesion = await client.query(consulta);
                 } catch (error) {
-                    console.error('Error al guardar sesión:', error);
-                    res.status(500).json({ error: 'Error al guardar la sesión' });
+                    console.error('Error al consultar la sesión:', error);
+                    res.status(500).json({ error: 'Error al consultar la sesión' });
                 }
+
+                if(sesion.rows.length > 0) {
+                    
+                    try {
+
+                        const query1 = {
+                        text: `UPDATE sesions SET sesion = $1 WHERE usuario_id = $2`,
+                        values: [
+                            token,
+                            rows[0].usuario_id
+                        ],
+                        };
+                        
+                        // Ejecutar la consulta
+                        const insertUser = await client.query(query1)
+                        console.log('Filas afectadas:', insertUser.rowCount);  
+                    } catch (error) {
+                        console.error('Error al actualizar sesión:', error);
+                        res.status(500).json({ error: 'Error al actualizar la sesión' });
+                    }
+
+                } else {
+                    try {
+                        
+                        const query1 = {
+                        text: `INSERT INTO sesions (sesion, usuario_id) 
+                                VALUES ($1, $2)`,
+                        values: [
+                            token,
+                            rows[0].usuario_id
+                        ],
+                        };
+                        
+                        // Ejecutar la consulta
+                        const insertUser = await client.query(query1)
+                        console.log('Filas afectadas:', insertUser.rowCount);  
+                    } catch (error) {
+                        console.error('Error al guardar sesión:', error);
+                        res.status(500).json({ error: 'Error al guardar la sesión' });
+                }
+                }
+
+                
 
                 /* res.cookie('token', token, { maxAge: 900000, httpOnly: true, secure: true, signed: true}) */
                 res.status(200).json({

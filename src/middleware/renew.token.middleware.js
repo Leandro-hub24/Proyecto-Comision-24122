@@ -6,10 +6,10 @@ export const renewTokenMiddleware = async (req, res, next) => {
     const client = await db.connect()
     if(req.user) {
         const currentTimestamp = Math.floor(Date.now() / 1000);
-        console.log(currentTimestamp)
+        /* console.log(currentTimestamp)
         console.log(req.user.exp)
         console.log(req.user.exp - currentTimestamp)
-        console.log(((60*60)*0.5))
+        console.log(((60*60)*0.5)) */
 
         if ((req.user.exp - currentTimestamp) <= (((60*60)*0.5))) {
 
