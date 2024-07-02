@@ -2,7 +2,7 @@
 
 export const authLogin = async (req, res, next) => {
 
-    if(req.signedCookies['loggedin'] && req.signedCookies['rol'] === 'admin'){
+    if(req.login && req.user.rol === 'admin'){
         next()
     } else {
         res.redirect('/')

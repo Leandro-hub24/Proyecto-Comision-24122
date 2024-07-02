@@ -40,9 +40,9 @@ function editarPerfil(){
     document.getElementById('imagePrevia').innerHTML = `
     <img src="${document.getElementById('img_url').src}">
     `
-    document.getElementById('nombre').value = document.getElementById('nombreUser').innerHTML
-    document.getElementById('apellido').value = document.getElementById('apellidoUser').innerHTML
-    document.getElementById('email').value = document.getElementById('emailUser').innerHTML
+    document.getElementById('nombre').value = document.getElementById('nombreUser').innerHTML.trim()
+    document.getElementById('apellido').value = document.getElementById('apellidoUser').innerHTML.trim()
+    document.getElementById('email').value = document.getElementById('emailUser').innerHTML.trim()
 
 }
 
@@ -87,6 +87,7 @@ function guardarForm(){
 }
 
 function putForm(user){
+    document.getElementById('editar').disabled = true
     let url = '/mi-perfil'
     let request = new Request(url, {
         method: 'PUT',

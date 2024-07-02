@@ -1,5 +1,7 @@
 import { db } from '@vercel/postgres'
 import axios from 'axios'
+import { SECRET_KEY, TOKEN_EXPIRES_IN} from '../config.js'
+import jwt from 'jsonwebtoken'
 
 export const getMiPerfil = async (req, res) => {
     
@@ -10,8 +12,8 @@ export const getMiPerfil = async (req, res) => {
     try {
     
         // Consulta SQL
-        const consulta = `SELECT email FROM usuarios_1 WHERE usuario_id = ${req.signedCookies['idUser']}`;
-        const consulta1 = `SELECT * FROM compras WHERE usuario_id = ${req.signedCookies['idUser']}`;
+        const consulta = `SELECT email FROM usuarios_1 WHERE usuario_id = ${req.user.idUser}`;
+        const consulta1 = `SELECT * FROM compras WHERE usuario_id = ${req.user.idUser}`;
         
         // Ejecutar la consulta
         const resultado = await client.query(consulta);
@@ -29,15 +31,15 @@ export const getMiPerfil = async (req, res) => {
 
 
             const usuarioSesion = {
-                nombres: req.signedCookies['nombres'],
-                apellidos: req.signedCookies['apellidos'],
-                img_url: req.signedCookies['img_url'],
-                rol: req.signedCookies['rol']
+              nombres: req.user.nombres,
+              apellidos: req.user.apellidos,
+              img_url: req.user.img_url,
+              rol: req.user.rol   
             }
 
             res.render('miPerfil', {
             login: true,
-            id: req.signedCookies['idUser'],
+            id: req.user.idUser,
             usuarioSesion,
             email: resultado.rows[0].email,
             compras
@@ -59,7 +61,7 @@ export const putMiPerfil = async (req, res) => {
   const uploadUrl = 'https://api.imgur.com/3/image';
   const clientId = 'a584d6c634ac09c';
   const client = await db.connect()
-  console.log(user)
+  /* console.log(user) */
   let img_url
       if(user.image64){
 
@@ -96,7 +98,7 @@ export const putMiPerfil = async (req, res) => {
               user.apellido,
               user.email,
               img_url,
-              req.signedCookies['idUser']
+              req.user.idUser
             ],
           };
           
@@ -108,6 +110,28 @@ export const putMiPerfil = async (req, res) => {
             res.cookie('nombres', user.nombre, { maxAge: 900000, httpOnly: true, secure: true, signed: true })
             res.cookie('apellidos', user.apellido, { maxAge: 900000, httpOnly: true, secure: true, signed: true })
             res.cookie('img_url', img_url, { maxAge: 900000, httpOnly: true, secure: true, signed: true})
+
+            try {
+
+                const token = jwt.sign({loggedin: true, idUser: req.user.idUser, nombres: user.nombre, apellidos: user.apellido, img_url: img_url, rol: req.user.rol}, SECRET_KEY, {expiresIn: TOKEN_EXPIRES_IN})
+                res.cookie('idUser', req.user.idUser, { maxAge: (((60*1000)*60)*2), httpOnly: true, secure: true, signed: true })
+
+                const query1 = {
+                text: `UPDATE sesions SET sesion = $1 WHERE usuario_id = $2`,
+                values: [
+                    token,
+                    req.user.idUser
+                ],
+                };
+                
+                // Ejecutar la consulta
+                const insertUser = await client.query(query1)
+                console.log('Filas afectadas:', insertUser.rowCount);  
+            } catch (error) {
+                console.error('Error al actualizar sesión:', error);
+                res.status(500).json({ error: 'Error al actualizar la sesión' });
+            }
+
             res.status(200).json(editUser.rowCount);
           } else {
             console.log('No se encontró ningún usuario con el ID proporcionado.');
@@ -128,7 +152,7 @@ export const putMiPerfil = async (req, res) => {
               user.nombre,
               user.apellido,
               user.email,
-              req.signedCookies['idUser']
+              req.user.idUser
             ],
           };
           
@@ -139,6 +163,28 @@ export const putMiPerfil = async (req, res) => {
             console.log('Filas afectadas:', editUser.rowCount);
             res.cookie('nombres', user.nombre, { maxAge: 900000, httpOnly: true, secure: true, signed: true })
             res.cookie('apellidos', user.apellido, { maxAge: 900000, httpOnly: true, secure: true, signed: true })
+
+            try {
+
+              const token = jwt.sign({loggedin: true, idUser: req.user.idUser, nombres: user.nombre, apellidos: user.apellido, img_url: req.user.img_url, rol: req.user.rol}, SECRET_KEY, {expiresIn: TOKEN_EXPIRES_IN})
+              res.cookie('idUser', req.user.idUser, { maxAge: (((60*1000)*60)*2), httpOnly: true, secure: true, signed: true })
+
+              const query1 = {
+              text: `UPDATE sesions SET sesion = $1 WHERE usuario_id = $2`,
+              values: [
+                  token,
+                  req.user.idUser
+              ],
+              };
+              
+              // Ejecutar la consulta
+              const insertUser = await client.query(query1)
+              console.log('Filas afectadas:', insertUser.rowCount);  
+          } catch (error) {
+              console.error('Error al actualizar sesión:', error);
+              res.status(500).json({ error: 'Error al actualizar la sesión' });
+          }
+
             res.status(200).json(editUser.rowCount);
           } else {
             console.log('No se encontró ningún usuario con el ID proporcionado.');

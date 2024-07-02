@@ -2,17 +2,17 @@ import { db } from '@vercel/postgres'
 
 export const getQuienesSomos = async (req, res) => {
 
-    if(req.signedCookies['loggedin']){
+    if(req.login){
         const usuarioSesion = {
-            nombres: req.signedCookies['nombres'],
-            apellidos: req.signedCookies['apellidos'],
-            img_url: req.signedCookies['img_url'],
-            rol: req.signedCookies['rol']
+            nombres: req.user.nombres,
+            apellidos: req.user.apellidos,
+            img_url: req.user.img_url,
+            rol: req.user.rol     
         }
 
         res.render('quienesSomos', {
          login: true,
-         id: req.signedCookies['idUser'],
+         id: req.user.idUser,
          usuarioSesion
         })
     } else {

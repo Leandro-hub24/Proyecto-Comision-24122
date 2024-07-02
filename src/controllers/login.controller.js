@@ -5,7 +5,7 @@ import { SECRET_KEY, TOKEN_EXPIRES_IN } from '../config.js'
 
 export const getLogin = async (req, res) => {
     
-    if(req.signedCookies['loggedin']){
+    if(req.login){
         res.redirect('/')
 
     } else {

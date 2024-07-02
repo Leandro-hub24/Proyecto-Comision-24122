@@ -2,18 +2,18 @@ import { db } from '@vercel/postgres'
 
 export const getContacto = async (req, res) => {
 
-    if(req.signedCookies['loggedin']){
+    if(req.login){
         const usuarioSesion = {
-            nombres: req.signedCookies['nombres'],
-            apellidos: req.signedCookies['apellidos'],
-            img_url: req.signedCookies['img_url'],
-            rol: req.signedCookies['rol']
+            nombres: req.user.nombres,
+            apellidos: req.user.apellidos,
+            img_url: req.user.img_url,
+            rol: req.user.rol 
         }
 
         res.render('contacto', {
-         login: true,
-         id: req.signedCookies['idUser'],
-         usuarioSesion
+            login: true,
+            id: req.user.idUser,
+            usuarioSesion
         })
     } else {
 
@@ -29,7 +29,7 @@ export const getContacto = async (req, res) => {
 
 export const postContacto = async (req, res) => {
 
-    if(req.signedCookies['loggedin']){
+    /* if(req.signedCookies['loggedin']){
         const usuarioSesion = {
             nombres: req.signedCookies['nombres'],
             apellidos: req.signedCookies['apellidos'],
@@ -48,7 +48,7 @@ export const postContacto = async (req, res) => {
             login: false
             
         })
-    } 
+    }  */
 
     
 

@@ -27,15 +27,15 @@ export const getAdmin = async (req, res) => {
 
         
           const usuarioSesion = {
-            nombres: req.signedCookies['nombres'],
-            apellidos: req.signedCookies['apellidos'],
-            img_url: req.signedCookies['img_url'],
-            rol: req.signedCookies['rol']
+            nombres: req.user.nombres,
+            apellidos: req.user.apellidos,
+            img_url: req.user.img_url,
+            rol: req.user.rol    
           }
   
           res.render('admin', {
            login: true,
-           id: req.signedCookies['idUser'],
+           id: req.user.idUser,
            usuarioSesion,
            productos,
            stock: resultado1.rows[0].count,

@@ -1,10 +1,11 @@
 import {Router} from 'express'
 import {getVistaProductos, postProducto, getProductoId} from '../controllers/vista.productos.controller.js'
-import { authSession } from '../middleware/authSesion.js'
+import { authMiddleware } from '../middleware/auth.middleware.js'
+import { renewTokenMiddleware } from '../middleware/renew.token.middleware.js'
 
 const router = Router()
 
-router.get('/productos', getVistaProductos)
+router.get('/productos', authMiddleware, renewTokenMiddleware, getVistaProductos)
 
 router.get('/productosCarrito/:id', getProductoId)
 

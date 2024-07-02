@@ -1,6 +1,6 @@
 export const authSession = async (req, res, next) => {
 
-    if(req.signedCookies['loggedin']){
+    if(req.login){
         next()
     } else {
         res.redirect('/')
