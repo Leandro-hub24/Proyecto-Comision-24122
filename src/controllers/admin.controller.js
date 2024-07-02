@@ -42,10 +42,12 @@ export const getAdmin = async (req, res) => {
            sinStock: resultado2.rows[0].count
           })
 
-      } catch (error) {
+    } catch (error) {
         console.error('Error al consultar productos:', error);
         res.status(500).json({ error: 'Error al consultar productos' });
-      }
+    } finally {
+        client.release();
+    }
    
     /* console.log(rows) */
 
@@ -104,6 +106,8 @@ export const postAdmin = async (req, res) => {
       } catch (error) {
         console.error('Error al consultar productos:', error);
         res.status(500).json({ error: 'Error al consultar productos' });
+      } finally {
+        client.release();
       }
 }
 
@@ -134,6 +138,8 @@ export const getProductos = async (req, res) => {
       } catch (error) {
         console.error('Error al consultar productos:', error);
         res.status(500).json({ error: 'Error al consultar productos' });
+      } finally {
+        client.release();
       }
 }
 
@@ -162,6 +168,8 @@ export const getProductosStock = async (req, res) => {
           } catch (error) {
             console.error('Error al consultar productos:', error);
             res.status(500).json({ error: 'Error al consultar productos' });
+          } finally {
+            client.release();
           }
 
         }else{
@@ -180,6 +188,8 @@ export const getProductosStock = async (req, res) => {
           } catch (error) {
             console.error('Error al consultar productos:', error);
             res.status(500).json({ error: 'Error al consultar productos' });
+          } finally {
+            client.release();
           }
 
         }
@@ -240,6 +250,8 @@ export const postProducto = async (req, res) => {
         } catch (error) {
           console.error('Error al insertar datos producto:', error);
           res.status(500).json({ error: 'Error al insertar datos producto' });
+        } finally {
+          client.release();
         }
 }
 
@@ -263,6 +275,8 @@ export const getProductoId = async (req, res) => {
       } catch (error) {
         console.error('Error al buscar producto:', error);
         res.status(500).json({ error: 'Error al buscar producto' });
+      } finally {
+        client.release();
       }
 
       
@@ -330,6 +344,8 @@ export const putProducto = async (req, res) => {
         } catch (error) {
           console.error('Error al actualizar datos del producto:', error);
           res.status(500).json({ error: 'Error al actualizar datos del producto' });
+        } finally {
+          client.release();
         }
 
       }else{
@@ -360,6 +376,8 @@ export const putProducto = async (req, res) => {
         } catch (error) {
           console.error('Error al actualizar datos del producto:', error);
           res.status(500).json({ error: 'Error al actualizar datos del producto' });
+        } finally {
+          client.release();
         }
 
       }
@@ -390,6 +408,8 @@ export const deleteProducto = async (req, res) => {
           } catch (error) {
             console.error('Error al eliminar producto:', error);
             res.status(500).json({ error: 'Error al eliminar producto' });
+          } finally {
+            client.release();
           }
 
 }

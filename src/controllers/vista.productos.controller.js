@@ -42,10 +42,12 @@ export const getVistaProductos = async (req, res) => {
             })
         } 
 
-      } catch (error) {
-        console.error('Error al consultar productos:', error);
-        res.status(500).json({ error: 'Error al consultar productos' });
-      }
+    } catch (error) {
+      console.error('Error al consultar productos:', error);
+      res.status(500).json({ error: 'Error al consultar productos' });
+    } finally {
+      client.release();
+    }
 
 }
 
@@ -67,10 +69,12 @@ export const postProducto = async (req, res) => {
       productos = resultado.rows
       res.status(200).json(productos)
 
-    } catch (error) {
-      console.error('Error al consultar productos:', error);
-      res.status(500).json({ error: 'Error al consultar productos' });
-    }
+  } catch (error) {
+    console.error('Error al consultar productos:', error);
+    res.status(500).json({ error: 'Error al consultar productos' });
+  } finally {
+    client.release();
+  }
 }
 
 export const getProductoId = async (req, res) => {
@@ -90,10 +94,12 @@ export const getProductoId = async (req, res) => {
       console.log('Producto:', resultado.rows); // Imprimir los resultados
       producto = resultado.rows
       res.status(200).json(producto)
-    } catch (error) {
-      console.error('Error al buscar producto:', error);
-      res.status(500).json({ error: 'Error al buscar producto' });
-    }
+  } catch (error) {
+    console.error('Error al buscar producto:', error);
+    res.status(500).json({ error: 'Error al buscar producto' });
+  } finally {
+    client.release();
+  }
 
     
 }

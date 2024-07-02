@@ -46,10 +46,12 @@ export const getMiPerfil = async (req, res) => {
             })
           
 
-      } catch (error) {
+    } catch (error) {
         console.error('Error al consultar datos de usuario:', error);
         res.status(500).json({ error: 'Error al consultar datos de usuario' });
-      }
+    } finally {
+        client.release();
+    }
 
     
     
@@ -86,10 +88,10 @@ export const putMiPerfil = async (req, res) => {
         } catch (error) {
           // Manejar cualquier error que ocurra durante la carga de la imagen
           console.error('Error uploading image perfil:', error.message);
-          res.status(500).json({ error: 'Error al subir la imagen' });
-          
+          res.status(500).json({ error: 'Error al subir la imagen' });  
         }
-        console.log(img_url)
+        /* console.log(img_url) */
+        
         try {
           const query1 = {
             text: `UPDATE usuarios_1 SET nombre = $1, apellido = $2, email = $3, img_url = $4 WHERE usuario_id = $5`,
@@ -141,6 +143,8 @@ export const putMiPerfil = async (req, res) => {
         } catch (error) {
           console.error('Error al actualizar datos del usuario:', error);
           res.status(500).json({ error: 'Error al actualizar datos del usuario' });
+        } finally {
+          client.release();
         }
 
       }else{
@@ -194,6 +198,8 @@ export const putMiPerfil = async (req, res) => {
         } catch (error) {
           console.error('Error al actualizar datos del usuario:', error);
           res.status(500).json({ error: 'Error al actualizar datos del usuario' });
+        } finally {
+          client.release();
         }
 
       }

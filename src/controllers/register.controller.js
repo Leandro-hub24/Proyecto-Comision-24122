@@ -65,5 +65,7 @@ export const postRegister = async (req, res) => {
         } catch (error) {
           console.error('Error al crear usuario:', error);
           res.status(500).json({ error: 'Error al crear usuario' });
+        } finally {
+          client.release();
         }
 }

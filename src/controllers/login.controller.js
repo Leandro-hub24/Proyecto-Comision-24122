@@ -118,5 +118,7 @@ export const postLogin = async (req, res) => {
             login: false
         })
         
+    } finally {
+        client.release();
     }
 }
