@@ -48,14 +48,7 @@ app.use(contactoRoutes)
 app.use(vistaProductosRoutes)
 
 app.get('/logout', (req, res) => {
-
-    res.clearCookie("loggedin");
     res.clearCookie("idUser");
-    res.clearCookie("nombres");
-    res.clearCookie("apellidos");
-    res.clearCookie("img_url");
-    res.clearCookie("rol");
-    res.clearCookie("token")
     res.redirect('/')
 })
 

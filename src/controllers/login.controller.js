@@ -38,12 +38,12 @@ export const postLogin = async (req, res) => {
                 res.status(200).json({msg: 'Contraseña incorrecta', login: false})       
             }else{
 
-                res.cookie('loggedin', true, { maxAge: 900000, httpOnly: true, secure: true, signed: true })
+                /* res.cookie('loggedin', true, { maxAge: 900000, httpOnly: true, secure: true, signed: true }) */
                 res.cookie('idUser', rows[0].usuario_id, { maxAge: (((60*1000)*60)*2), httpOnly: true, secure: true, signed: true })
-                res.cookie('nombres', rows[0].nombre, { maxAge: 900000, httpOnly: true, secure: true, signed: true })
+                /* res.cookie('nombres', rows[0].nombre, { maxAge: 900000, httpOnly: true, secure: true, signed: true })
                 res.cookie('apellidos', rows[0].apellido, { maxAge: 900000, httpOnly: true, secure: true, signed: true })
                 res.cookie('img_url', rows[0].img_url, { maxAge: 900000, httpOnly: true, secure: true, signed: true})
-                res.cookie('rol', rows[0].rol, { maxAge: 900000, httpOnly: true, secure: true, signed: true})
+                res.cookie('rol', rows[0].rol, { maxAge: 900000, httpOnly: true, secure: true, signed: true}) */
                 token = jwt.sign({loggedin: true, idUser: rows[0].usuario_id, nombres: rows[0].nombre, apellidos: rows[0].apellido, img_url: rows[0].img_url, rol: rows[0].rol}, SECRET_KEY, {expiresIn: TOKEN_EXPIRES_IN})
 
                 let sesion
