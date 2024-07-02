@@ -42,6 +42,8 @@ export const authMiddleware = async (req, res, next) => {
     } catch (error) {
         console.error('Error en el middleware de autenticación:', error);
         return res.status(500).json({ error: 'Error en el middleware de autenticación' });
+    } finally {
+        client.release();
     }
     
 
