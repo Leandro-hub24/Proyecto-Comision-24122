@@ -12,12 +12,12 @@ export const getMiPerfil = async (req, res) => {
     try {
     
         // Consulta SQL
-        const consulta = `SELECT email FROM usuarios_1 WHERE usuario_id = ${req.user.idUser}`;
-        const consulta1 = `SELECT * FROM compras WHERE usuario_id = ${req.user.idUser}`;
+        const consultaUsuario = `SELECT email FROM usuarios_1 WHERE usuario_id = $1`;
+        const consultaCompra = `SELECT * FROM compras WHERE usuario_id = $1`;
         
         // Ejecutar la consulta
-        const resultado = await client.query(consulta);
-        const resultado1 = await client.query(consulta1);
+        const resultado = await client.query(consultaUsuario, [req.user.idUser]);
+        const resultado1 = await client.query(consultaCompra, [req.user.idUser]);
         compras = resultado1.rows
         
         for(let i = 0; i < compras.length; i++) {

@@ -83,6 +83,7 @@ main {
 .contenedorPedidos details {
     width: 70%;
     position: relative;
+    cursor: pointer;
 }
 
 .contenedorPedidos details summary{
