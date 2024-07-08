@@ -14,6 +14,7 @@ import miPerfilRoutes from './routes/mi.perfil.routes.js'
 import quienesSomosRoutes from './routes/quienes.somos.routes.js'
 import contactoRoutes from './routes/contacto.routes.js'
 import vistaProductosRoutes from './routes/vista.productos.routes.js'
+import comprasRoutes from './routes/compras.routes.js'
 
 
 const app = express()
@@ -46,6 +47,7 @@ app.use(miPerfilRoutes)
 app.use(quienesSomosRoutes)
 app.use(contactoRoutes)
 app.use(vistaProductosRoutes)
+app.use(comprasRoutes)
 
 app.get('/logout', (req, res) => {
     res.clearCookie("idUser");

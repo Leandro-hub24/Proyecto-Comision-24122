@@ -23,7 +23,18 @@ export const getMiPerfil = async (req, res) => {
         for(let i = 0; i < compras.length; i++) {
             const consulta2 = `SELECT * FROM pedidos WHERE compra_id = ${compras[i].compra_id}`;
             const resultado2 = await client.query(consulta2);
+            /* console.log(resultado2.rows) */
             compras[i].pedidos = resultado2.rows
+
+
+            for(let j = 0; j < compras[i].pedidos.length; j++){
+              const query = 'SELECT nombre, precio FROM productos WHERE producto_id = $1';
+              // Ejecutar la consulta
+              const pro = await client.query(query, [compras[i].pedidos[j].producto_id]);
+
+              compras[i].pedidos[j].producto = pro.rows[0]
+            }
+
         }   
 
         console.log('Usuario:', resultado.rows[0]); // Imprimir los resultados

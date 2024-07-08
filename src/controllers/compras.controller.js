@@ -1,5 +1,35 @@
 import { db } from '@vercel/postgres'
 
+export const getCompras = async (req, res) => {
+
+  const client = await db.connect(); 
+  let compras;
+
+  try {
+      // Utilizar consulta preparada
+      const consulta = 'SELECT * FROM compras';
+      // Ejecutar la consulta
+      compras = await client.query(consulta);
+
+      if(compras.rows.length > 0) {
+          for(let i = 0; i < compras.rows.length; i++) {
+
+              const consulta = 'SELECT * FROM pedidos WHERE compra_id = $1';
+              const productos = await client.query(consulta, compras.rows[i].compra_id);
+              compras.rows[i].productos = productos.rows;
+              res.status(200).json({compras: compras.rows})
+          }
+      }
+
+  } catch (error) {
+      console.error('Error al consultar las compras:', error);
+      res.status(500).json({ error: 'Error al consultar las compras' });
+  } finally {
+      client.release();
+  }
+
+}
+
 export const getComprasID = async (req, res) => {
 
     const client = await db.connect(); 
@@ -66,8 +96,24 @@ export const postCompras = async (req, res) => {
             };
                 
             // Ejecutar la consulta
-            const insertProductos = await client.query(query1)
-            console.log('Filas afectadas:', insertProductos.rowCount);  
+            const insertProductos = await client.query(query1);
+            console.log('Filas afectadas:', insertProductos.rowCount);
+            
+            const query2 = {
+              text: `UPDATE productos SET stock = stock - $1 WHERE producto_id = $2 RETURNING stock`,
+              values: [
+              compras[i].cantidad, 
+              compras[i].producto_id
+            ],
+            };
+            const updateStock = await client.query(query2);
+            console.log('Filas afectadas:', updateStock.rowCount);
+
+            if(updateStock.rows[0].stock < 0) {
+              throw new Error(`Producto con ID: ${compras[i].producto_id}, sin stock disponible.`) 
+            }
+
+
         }
 
         await client.query('COMMIT'); // Confirmar transacción

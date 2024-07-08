@@ -3,7 +3,7 @@ import { authMiddleware } from '../middleware/auth.middleware.js'
 import { renewTokenMiddleware } from '../middleware/renew.token.middleware.js'
 import { authSession } from '../middleware/authSesion.js'
 import { authLogin } from '../middleware/authLogin.js'
-import { getComprasID, postCompras } from '../controllers/compras.controller.js'
+import { getComprasID, postCompras, getCompras } from '../controllers/compras.controller.js'
 
 const router = Router()
 

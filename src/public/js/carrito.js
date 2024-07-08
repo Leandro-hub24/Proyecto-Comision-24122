@@ -6,7 +6,10 @@ window.addEventListener('load', () => {
     if(localStorage){
         if(localStorage.getItem('carrito') !== undefined && localStorage.getItem('carrito')){
             compra = JSON.parse(localStorage.getItem('carrito'))
-            showCarritoSave()
+            if(compra !== ''){
+                showCarritoSave()
+            }
+            
         }
     }
 })
@@ -191,7 +194,37 @@ function submit() {
             title: "El carrito se encuentra vacio"    
             })
     } else {
-        
-    }
+        const url = '/compras';
+
+        var request = new Request(url, {
+            method: 'POST',
+            body: JSON.stringify(compra),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        fetch(request)
+        .then(res => res.json())
+        .then (data => {
+            if(data.message){
+                Swal.fire({
+                icon: "success", 
+                title: data.message   
+                })
+                document.getElementById('cardsCarrito').innerHTML = ''
+                compra = []
+                cantCarrito = 0
+                precioCarrito = 0
+                actualizarCarrito()
+            } else {
+                Swal.fire({
+                    icon: "success", 
+                    title: data.error   
+                    })
+            }
+            
+        })
     
-}
+    }
+
+}    

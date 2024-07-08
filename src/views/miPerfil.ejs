@@ -57,14 +57,20 @@
 
                 <div class="contenedorPedidos">
                     <h4>Mis compras:</h4>
-                    <details>
-                        <summary class="pedido">Compra 120321</summary>
-                        <div class="info">Facturas, precio $6000 </div>
-                    </details>
-                    <details>
-                        <summary class="pedido">Compra 120321</summary>
-                        <div class="info">Facturas, precio $6000 </div>
-                    </details>
+                    <% if(compras.length !== 0) { %>
+                        <% for(let i = 0; i < compras.length; i++) { %>
+                        <details>
+                            <summary class="pedido">Compra ID: <%= compras[i].compra_id %></summary>
+                            <div class="info">
+                                <% for(let j = 0; j < compras[i].pedidos.length; j++) { %>
+                                Producto: <%= compras[i].pedidos[j].producto.nombre %>, Precio: <%= compras[i].pedidos[j].producto.precio %>, Cantidad: <%= compras[i].pedidos[j].cant %> <br>
+                                <% } %>
+                            </div>
+                        </details>
+                        <% } %>
+                    <% } else {%>
+                            <div class="info">Aún no ha realizado compras. </div>
+                    <% } %>
 
                 </div>
 
