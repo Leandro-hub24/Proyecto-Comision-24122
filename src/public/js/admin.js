@@ -238,9 +238,9 @@ document.getElementById('cargarMas').addEventListener('click', () => {
     fetch(request)
     .then(response => response.json())
     .then( (data) => {
-        document.getElementById('cStock').innerHTML = (parseInt(data.stock) + parseInt(document.getElementById('cStock').innerHTML))
-        document.getElementById('sStock').innerHTML = (parseInt(data.sinStock) + parseInt(document.getElementById('sStock').innerHTML))
-        document.getElementById('todos').innerHTML = (data.productos.length + parseInt(document.getElementById('todos').innerHTML))
+        document.getElementById('cStock').innerHTML = (parseInt(data.stock) /* + parseInt(document.getElementById('cStock').innerHTML) */)
+        document.getElementById('sStock').innerHTML = (parseInt(data.sinStock) /* + parseInt(document.getElementById('sStock').innerHTML) */)
+        document.getElementById('todos').innerHTML = (data.productos.length /* + parseInt(document.getElementById('todos').innerHTML) */)
         data.productos.map( (producto) => {
             document.getElementById('cards').innerHTML += `
             <div class="card">

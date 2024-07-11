@@ -9,7 +9,7 @@ export const getAdmin = async (req, res) => {
     try {
     
         // Consulta SQL
-        const consulta = 'SELECT * FROM productos ORDER BY nombre LIMIT 8 OFFSET 0';
+        const consulta = 'SELECT * FROM productos ORDER BY nombre LIMIT 9 OFFSET 0';
         const consultaStock = 'SELECT COUNT(producto_id) FROM productos WHERE stock > 0'
         const consultaSinStock = 'SELECT COUNT(producto_id) FROM productos WHERE stock = 0'
         // Ejecutar la consulta
@@ -83,7 +83,7 @@ export const postAdmin = async (req, res) => {
     try {
     
         // Consulta SQL
-        const consulta = `SELECT * FROM productos ORDER BY nombre LIMIT 8 OFFSET ${i}`;
+        const consulta = `SELECT * FROM productos ORDER BY nombre LIMIT 9 OFFSET ${i}`;
         const consultaStock = 'SELECT COUNT(producto_id) FROM productos WHERE stock > 0'
         const consultaSinStock = 'SELECT COUNT(producto_id) FROM productos WHERE stock = 0'
     
