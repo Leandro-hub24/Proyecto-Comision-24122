@@ -106,11 +106,10 @@ export const putMiPerfil = async (req, res) => {
         
         try {
           const query1 = {
-            text: `UPDATE usuarios_1 SET nombre = $1, apellido = $2, email = $3, img_url = $4 WHERE usuario_id = $5`,
+            text: `UPDATE usuarios_1 SET nombre = $1, apellido = $2, img_url = $3 WHERE usuario_id = $4`,
             values: [
               user.nombre,
               user.apellido,
-              user.email,
               img_url,
               req.user.idUser
             ],
@@ -163,11 +162,10 @@ export const putMiPerfil = async (req, res) => {
 
         try {
           const query1 = {
-            text: `UPDATE usuarios_1 SET nombre = $1, apellido = $2, email = $3 WHERE usuario_id = $4`,
+            text: `UPDATE usuarios_1 SET nombre = $1, apellido = $2 WHERE usuario_id = $3`,
             values: [
               user.nombre,
               user.apellido,
-              user.email,
               req.user.idUser
             ],
           };
@@ -177,8 +175,6 @@ export const putMiPerfil = async (req, res) => {
           
           if (editUser.rowCount > 0) {
             console.log('Filas afectadas:', editUser.rowCount);
-            res.cookie('nombres', user.nombre, { maxAge: 900000, httpOnly: true, secure: true, signed: true })
-            res.cookie('apellidos', user.apellido, { maxAge: 900000, httpOnly: true, secure: true, signed: true })
 
             try {
 

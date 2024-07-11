@@ -57,14 +57,12 @@ function editarPerfil(){
     `
     document.getElementById('nombre').value = document.getElementById('nombreUser').innerHTML.trim()
     document.getElementById('apellido').value = document.getElementById('apellidoUser').innerHTML.trim()
-    document.getElementById('email').value = document.getElementById('emailUser').innerHTML.trim()
 
 }
 
 function vaciarModal(){
     document.getElementById('nombre').value = ''
     document.getElementById('apellido').value = ''
-    document.getElementById('email').value = ''
     document.getElementById('image').value = ''
     image64 = ''
 }
@@ -73,16 +71,14 @@ function guardarForm(){
 
     let nombre = document.getElementById('nombre').value
     let apellido = document.getElementById('apellido').value
-    let email = document.getElementById('email').value
 
 
-    if( nombre !== '' && apellido !== '' && email !== '' ){
+    if( nombre !== '' && apellido !== '' ){
 
         if(image64 !== '') {
             let user = {
             nombre,
             apellido,
-            email,
             image64
             }
             putForm(user)
@@ -90,8 +86,7 @@ function guardarForm(){
         }else{
             let user = {
                 nombre,
-                apellido,
-                email
+                apellido
             }
             putForm(user)
             cancelarForm()
