@@ -61,7 +61,7 @@
                     <% if(compras.length !== 0) { %>
                         <% for(let i = 0; i < compras.length; i++) { %>
                         <details>
-                            <summary class="pedido">Compra ID: <%= compras[i].compra_id %>, Fecha de compra: <%= new Date(compras[i].fecha_compra).getDate() %>/<%= new Date(compras[i].fecha_compra).getMonth() %>/<%= new Date(compras[i].fecha_compra).getFullYear() %></summary>
+                            <summary class="pedido">Compra ID: <%= compras[i].compra_id %>, Fecha de compra: <%= new Date(compras[i].fecha_compra).getDate() %>/<%= new Date(compras[i].fecha_compra).getMonth() + 1 %>/<% if((new Date(compras[i].fecha_compra).getMonth() + 1) > 12){ %><%= new Date(compras[i].fecha_compra).getFullYear() + 1 %><% }else { %><%= new Date(compras[i].fecha_compra).getFullYear() %><% } %></summary>
                             <div class="info">
                                 <% for(let j = 0; j < compras[i].pedidos.length; j++) { %>
                                 Producto: <%= compras[i].pedidos[j].producto.nombre %>, Precio: <%= compras[i].pedidos[j].producto.precio %>, Cantidad: <%= compras[i].pedidos[j].cant %> <br>
