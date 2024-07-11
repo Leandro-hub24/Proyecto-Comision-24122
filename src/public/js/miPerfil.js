@@ -7,6 +7,10 @@ document.getElementById('formModal').addEventListener('submit', function(event) 
     event.preventDefault()
 })
 
+document.getElementById('formModal1').addEventListener('submit', function(event) {
+    event.preventDefault()
+})
+
 let element
 let image 
 let image64 = ''
@@ -29,9 +33,20 @@ function cancelarForm(){
     vaciarModal()
 }
 
+function cancelarForm1(){
+    document.getElementById('fondoModal1').style.display = 'none'
+    vaciarModal()
+}
+
 document.getElementById('fondoModal').addEventListener('click', function(event) {
     if (event.target === document.getElementById('fondoModal')) {
         cancelarForm()
+    }
+})
+
+document.getElementById('fondoModal1').addEventListener('click', function(event) {
+    if (event.target === document.getElementById('fondoModal1')) {
+        cancelarForm1()
     }
 })
 
@@ -118,3 +133,62 @@ function putForm(user){
         }
     })
 }
+
+function eliminarPerfil() {
+    document.getElementById('fondoModal1').removeAttribute('style')
+}
+
+document.getElementById('eliminar').addEventListener('click', () => {
+    let pass = document.getElementById('pass').value
+    if(pass === ''){
+        Swal.fire({
+            icon: "error", 
+            title: 'Ingrese su contraseña', 
+            })
+    } else {
+        document.getElementById('eliminar').disabled = true
+        let url = '/mi-perfil/eliminar'
+        let request = new Request(url, {
+            method: 'DELETE',
+            body: JSON.stringify({pass: pass}),
+            headers: {
+                "Content-Type": "application/json",            
+            }, 
+        });
+        fetch(request)
+        .then(response => response.json())
+        .then( (data) => {
+            console.log(data)
+            if(data.msg){
+                Swal.fire({
+                    icon: "success", 
+                    title: 'Se ha eliminado correctamente',
+                    showConfirmButton: false    
+                    })
+                setTimeout(function () {
+                    window.location = '/'
+                }, 1500)
+            }else if(data.error){
+                Swal.fire({
+                    icon: "error", 
+                    title: data.error.replace('Error: ', ''),  
+                    })
+                    document.getElementById('eliminar').disabled = false    
+            }
+        })
+    }
+})
+
+let flag = 0
+document.getElementById('show').addEventListener('click', () => {
+
+    if(flag === 0){
+        document.getElementById('show').src = 'images/icons/hide-regular-24.png'
+        flag += 1
+        document.getElementById('pass').setAttribute('type', 'text')
+    }else{
+        document.getElementById('show').src = 'images/icons/show-regular-24.png'
+        flag = 0
+        document.getElementById('pass').setAttribute('type', 'password')
+    }
+})

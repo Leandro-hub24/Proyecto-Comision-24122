@@ -195,6 +195,44 @@ main {
     margin-bottom: 24px;
 }
 
+/* Modal delete perfil */
+
+.input input {
+    padding: 16px;
+    border: 1px solid white;
+    border-radius: 8px;
+    width: 260px;
+}
+
+.botones {
+    display: flex;
+    gap: 16px;
+}
+
+.botones button {
+    width: 124px;
+}
+
+.password {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.password input {
+    border: 0;
+    width: 226px;
+}
+
+.password img {
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+
 @media only screen and (max-width: 630px) {
 
     .contenedorPerfil {      

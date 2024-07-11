@@ -2,6 +2,7 @@ import { db } from '@vercel/postgres'
 import axios from 'axios'
 import { SECRET_KEY, TOKEN_EXPIRES_IN} from '../config.js'
 import jwt from 'jsonwebtoken'
+import bcryptjs from 'bcryptjs'
 
 export const getMiPerfil = async (req, res) => {
     
@@ -37,8 +38,8 @@ export const getMiPerfil = async (req, res) => {
 
         }   
 
-        console.log('Usuario:', resultado.rows[0]); // Imprimir los resultados
-        console.log('Compras:', compras)
+        /* console.log('Usuario:', resultado.rows[0]);
+        console.log('Compras:', compras) */
 
 
             const usuarioSesion = {
@@ -214,4 +215,54 @@ export const putMiPerfil = async (req, res) => {
         }
 
       }
+}
+
+export const deleteMiPerfil = async (req, res) => {
+    
+  const client = await db.connect()
+  const pass = req.body.pass
+  console.log(pass)
+
+  try {
+      await client.query('BEGIN');
+      // Consulta SQL
+      const consultaUsuario = `SELECT pass FROM usuarios_1 WHERE usuario_id = $1`;
+      
+      // Ejecutar la consulta
+      const {rows} = await client.query(consultaUsuario, [req.user.idUser]);
+
+      console.log('Usuario:', rows[0]); // Imprimir los resultados
+
+            if(typeof rows[0] === 'undefined' || !(await bcryptjs.compare(pass, rows[0].pass))){
+
+              throw new Error('Contraseña incorrecta')    
+
+            }else{
+
+              const deleteUser = 'DELETE FROM usuarios_1 WHERE usuario_id = $1'
+              const {rowCount} = await client.query(deleteUser, [req.user.idUser])
+
+              const deleteToken = 'DELETE FROM sesions WHERE usuario_id = $1'
+              const token = await client.query(deleteToken, [req.user.idUser])
+  
+              if(rowCount > 0 && token.rowCount > 0) {
+                res.clearCookie("idUser");
+              } else {
+                throw new Error('El usuario no existe')
+              }    
+            }
+
+          await client.query('COMMIT'); // Confirmar transacción  
+          res.status(200).json({msg: 'Se ha eliminado el usuario correctamente'})
+  } catch (error) {
+      await client.query('ROLLBACK');
+      console.log('Error al eliminar usuario:', error);
+      res.status(500).json({ error: `${error}` });
+  } finally {
+      client.release();
+  }
+
+  
+  
+
 }

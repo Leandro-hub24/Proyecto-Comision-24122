@@ -52,6 +52,7 @@
                             </span></p>
                     </div>
                     <button class="btt" onclick="editarPerfil()" id="editar">Editar</button>
+                    <button class="btt" onclick="eliminarPerfil()" id="eliminarBt">Eliminar cuenta</button>
 
                 </div>
 
@@ -110,6 +111,33 @@
                         <div class="botonesForm">
                             <button class="btt" onclick="cancelarForm()" id="cancelar">Cancelar</button>
                             <button class="btt" onclick="guardarForm()" id="guardar">Guardar</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="fondoModal" id="fondoModal1" style="display: none;">
+                <div class="modal" id="modal1">
+                    <form action="" class="formModal" id="formModal1">
+
+                        <div class="formulario">
+                            <div class="input">
+                                <label for="pass">Ingrese su contraseña:</label>
+                                <div class="password" id="password">
+                                    <input type="password" name="pass" id="pass">
+                                    <img src="images/icons/show-regular-24.png" alt="" id="show">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="botonesForm">
+                            <button class="btt" onclick="cancelarForm1()" id="cancelar1">Cancelar</button>
+                            <button class="btt" id="eliminar">Confirmar</button>
                         </div>
 
                     </form>
