@@ -184,7 +184,7 @@ function putForm(producto){
 }
 
 function actualizarCards(){
-    let url = `/productos/${i+8}`
+    let url = `/productos/${i+9}`
     let request = new Request(url, {
         method: 'GET',
     });
